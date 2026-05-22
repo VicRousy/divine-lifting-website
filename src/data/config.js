@@ -15,5 +15,5 @@ export const schoolConfig = {
     twitter: "#",
     youtube: "#"
   },
-  portalUrl: "http://localhost:5173"
+  portalUrl: "https://divine-lifting-school.vercel.app"
 };
