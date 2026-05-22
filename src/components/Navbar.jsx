@@ -55,8 +55,8 @@ export default function Navbar() {
               Apply Now
             </a>
             <a
-              href="http://localhost:5174"
-              className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium transition-all"
+              href="https://divine-lifting-school.vercel.app"
+              className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg"
             >
               Portal Login
             </a>
@@ -97,7 +97,7 @@ export default function Navbar() {
                 Apply Now
               </a>
               <a
-                href="http://localhost:5174?force_login=true"
+                href="https://divine-lifting-school.vercel.app?force_login=true"
                 onClick={() => setIsOpen(false)}
                 className="block w-full text-center bg-green-600 text-white py-3 rounded-lg font-bold"
               >
