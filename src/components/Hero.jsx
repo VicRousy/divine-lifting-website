@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { ArrowRight, PlayCircle } from 'lucide-react'
 
 export default function Hero() {
   return (
-    <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[620px] h-[100svh] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div 
         className="absolute inset-0 z-0"
@@ -32,7 +33,7 @@ export default function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight">
             Where Excellence <br />
             <span className="text-[#fde047]">Meets Character</span>
           </h1>
@@ -45,20 +46,20 @@ export default function Hero() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a
-              href="/admissions"
+            <Link
+              to="/admissions"
               className="group bg-[#f97316] hover:bg-[#ea580c] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:-translate-y-0.5 shadow-xl flex items-center gap-2"
             >
               Apply Now
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a
-              href="/facilities"
+            </Link>
+            <Link
+              to="/facilities"
               className="group border-2 border-white/80 text-white hover:bg-white/10 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center gap-2"
             >
               <PlayCircle size={20} />
               Virtual Tour
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

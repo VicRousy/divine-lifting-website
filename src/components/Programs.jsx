@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import nurseryImg from '../assets/nursery and pre-school.jpg'
 import primaryImg from '../assets/primary.jpg'
@@ -45,7 +46,7 @@ export default function Programs() {
               className="group bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300"
             >
               <div className="relative h-64 overflow-hidden">
-                <img src={program.image} alt={program.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <img src={program.image} alt={program.title} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute top-4 left-4 bg-secondary text-white px-3 py-1 rounded-full text-sm font-semibold">
                   {program.badge}
                 </div>
@@ -53,9 +54,9 @@ export default function Programs() {
               <div className="p-8">
                 <h3 className="text-2xl font-bold text-primary mb-3">{program.title}</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">{program.description}</p>
-                <a href="/academics" className="inline-flex items-center gap-2 text-secondary font-bold hover:gap-3 transition-all">
+                <Link to="/academics" className="inline-flex items-center gap-2 text-secondary font-bold hover:gap-3 transition-all">
                   View Details <ArrowRight size={18} />
-                </a>
+                </Link>
               </div>
             </motion.div>
           ))}

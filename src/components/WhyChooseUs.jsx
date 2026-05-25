@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { BookOpen, Heart, Building2, ArrowRight } from 'lucide-react'
 
 const features = [
@@ -47,9 +48,9 @@ export default function WhyChooseUs() {
               </div>
               <h3 className="text-xl font-bold text-primary mb-3">{feature.title}</h3>
               <p className="text-gray-800 mb-6 leading-relaxed">{feature.description}</p>
-              <a href="/about" className="inline-flex items-center gap-2 text-secondary font-bold hover:gap-3 transition-all">
+              <Link to="/about" className="inline-flex items-center gap-2 text-secondary font-bold hover:gap-3 transition-all">
                 Learn More <ArrowRight size={18} />
-              </a>
+              </Link>
             </motion.div>
           ))}
         </div>

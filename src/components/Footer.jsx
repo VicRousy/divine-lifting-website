@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { schoolConfig } from '../data/config'
 
 export default function Footer() {
@@ -19,7 +20,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {['Home', 'About', 'Admissions', 'Academics', 'Facilities', 'Contact'].map(link => (
                 <li key={link}>
-                  <a href={`/${link.toLowerCase().replace(' ', '-')}`} className="text-gray-300 hover:text-secondary transition-colors">{link}</a>
+                  <Link to={link === 'Home' ? '/' : `/${link.toLowerCase().replace(' ', '-')}`} className="text-gray-300 hover:text-secondary transition-colors">{link}</Link>
                 </li>
               ))}
               <li><a href={schoolConfig.portalUrl} target="_blank" rel="noreferrer" className="text-gray-300 hover:text-secondary transition-colors">Portal Login</a></li>

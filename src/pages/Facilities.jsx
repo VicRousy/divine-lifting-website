@@ -72,7 +72,7 @@ export default function FacilitiesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-6xl font-serif font-bold text-white mb-4">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-white mb-4">
               Our Facilities
             </h1>
           </motion.div>
@@ -89,7 +89,7 @@ export default function FacilitiesPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-serif font-bold text-[#1e3a8a] mb-4">
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1e3a8a] mb-4">
               Facility Details
             </h2>
           </motion.div>
@@ -107,14 +107,16 @@ export default function FacilitiesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                className={`flex gap-8 items-center ${idx % 2 === 1 ? "flex-row-reverse" : ""}`}
+                className={`flex flex-col lg:flex-row gap-8 items-stretch lg:items-center ${idx % 2 === 1 ? "lg:flex-row-reverse" : ""}`}
               >
                 {/* Image */}
-                <div className="flex-1 rounded-lg overflow-hidden shadow-lg bg-gray-200 h-80 flex items-center justify-center text-gray-400">
+                <div className="flex-1 rounded-lg overflow-hidden shadow-lg bg-gray-200 h-64 sm:h-80 flex items-center justify-center text-gray-400">
                   {facility.image !== "placeholder" ? (
                     <img
                       src={facility.image}
                       alt={facility.name}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
@@ -123,14 +125,14 @@ export default function FacilitiesPage() {
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 p-8 rounded-2xl shadow-lg" style={{ backgroundColor: facility.bgColor }}>
-                  <h3 className="text-3xl font-serif font-bold text-white mb-3">
+                <div className="flex-1 p-6 sm:p-8 rounded-2xl shadow-lg" style={{ backgroundColor: facility.bgColor }}>
+                  <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-3">
                     {facility.name}
                   </h3>
                   <p className="text-white/90 text-lg leading-relaxed mb-6">
                     {facility.description}
                   </p>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {facility.features.map((feature, i) => (
                       <div key={i} className="flex items-start gap-3">
                         <span className="text-[#fde047] font-bold text-lg">
@@ -156,7 +158,7 @@ export default function FacilitiesPage() {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
         >
-          <h2 className="text-4xl font-serif font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white mb-4">
             Explore Our Campus Virtually
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">

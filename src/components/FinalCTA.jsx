@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 
 export default function FinalCTA() {
@@ -15,12 +16,12 @@ export default function FinalCTA() {
         <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
           Limited spaces available. Apply now to secure your child's future in our world-class educational environment.
         </p>
-        <a
-          href="/admissions"
+        <Link
+          to="/admissions"
           className="inline-flex items-center gap-2 bg-secondary hover:bg-orange-600 text-white px-10 py-5 rounded-xl font-bold text-xl transition-all shadow-xl hover:shadow-2xl"
         >
           Start Application Process <ArrowRight size={24} />
-        </a>
+        </Link>
       </div>
     </section>
   )

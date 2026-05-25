@@ -16,7 +16,7 @@ function App() {
       <div className="flex flex-col min-h-screen font-sans">
         <Navbar />
         <main className="flex-grow">
-          <Suspense fallback={<div className="p-20 text-center">Loading...</div>}>
+          <Suspense fallback={<div className="min-h-[50vh] pt-28 text-center text-primary font-semibold">Loading...</div>}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
+import { Link, NavLink } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Phone } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { schoolConfig } from '../data/config'
 import logoImg from '../assets/logo.jpg.png'
 
@@ -28,42 +29,43 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <a href="/" className="flex items-center gap-3">
+            <Link to="/" className="flex items-center gap-3 min-w-0" onClick={() => setIsOpen(false)}>
               <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center p-1 shadow-lg">
                 <img src={logoImg} alt="Divine Lifting School" className="w-full h-full object-contain" />
               </div>
-              <div className={`font-serif font-bold text-xl ${scrolled ? 'text-primary' : 'text-white'}`}>
+              <div className={`font-serif font-bold text-lg sm:text-xl truncate ${scrolled ? 'text-primary' : 'text-white'}`}>
                 {schoolConfig.name}
               </div>
-            </a>
+            </Link>
           </div>
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navLinks.map((link) => (
-              <a
+              <NavLink
                 key={link.name}
-                href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-secondary ${scrolled ? 'text-primary' : 'text-white/90'}`}
+                to={link.href}
+                className={({ isActive }) => `text-sm font-medium transition-colors hover:text-secondary ${isActive ? 'text-secondary' : scrolled ? 'text-primary' : 'text-white/90'}`}
               >
                 {link.name}
-              </a>
+              </NavLink>
             ))}
-            <a
-              href="/admissions"
+            <Link
+              to="/admissions"
               className="bg-secondary hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg"
             >
               Apply Now
-            </a>
+            </Link>
             <a
               href="https://divine-lifting-school.vercel.app"
+              rel="prefetch"
               className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg"
             >
               Portal Login
             </a>
           </div>
 
-          <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className={`p-2 ${scrolled ? 'text-primary' : 'text-white'}`}>
+          <div className="lg:hidden">
+            <button type="button" aria-label="Toggle menu" onClick={() => setIsOpen(!isOpen)} className={`p-2 ${scrolled ? 'text-primary' : 'text-white'}`}>
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -76,26 +78,26 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-white shadow-xl border-t border-gray-100"
+            className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-xl border-t border-gray-100 max-h-[calc(100vh-76px)] overflow-y-auto"
           >
             <div className="px-4 py-6 space-y-4">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
-                  href={link.href}
+                  to={link.href}
                   onClick={() => setIsOpen(false)}
                   className="block text-lg font-medium text-primary hover:text-secondary"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
-              <a
-                href="/admissions"
+              <Link
+                to="/admissions"
                 onClick={() => setIsOpen(false)}
                 className="block w-full text-center bg-secondary text-white py-3 rounded-lg font-bold"
               >
                 Apply Now
-              </a>
+              </Link>
               <a
                 href="https://divine-lifting-school.vercel.app?force_login=true"
                 onClick={() => setIsOpen(false)}

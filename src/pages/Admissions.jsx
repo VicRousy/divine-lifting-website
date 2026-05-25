@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { CheckCircle, FileText, Calendar, Users, Zap } from "lucide-react";
 import schoolImg from "../assets/school3.jpg.jpeg";
 
@@ -99,7 +100,7 @@ export default function Admissions() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-6xl font-serif font-bold text-white mb-4">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-white mb-4">
               Admissions
             </h1>
           </motion.div>
@@ -116,7 +117,7 @@ export default function Admissions() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-serif font-bold text-[#1e3a8a] mb-4">
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1e3a8a] mb-4">
               Admissions Information
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -193,7 +194,7 @@ export default function Admissions() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-serif font-bold text-[#1e3a8a] mb-4">
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1e3a8a] mb-4">
               Admissions Process
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -251,7 +252,7 @@ export default function Admissions() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-serif font-bold text-[#1e3a8a] mb-4">
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1e3a8a] mb-4">
               Important Dates 2026
             </h2>
           </motion.div>
@@ -273,7 +274,7 @@ export default function Admissions() {
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className="flex gap-6 items-start bg-[#374155] rounded-lg p-6"
+                className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start bg-[#374155] rounded-lg p-6"
               >
                 <Calendar size={32} className="text-[#f97316] flex-shrink-0" />
                 <div>
@@ -302,21 +303,21 @@ export default function Admissions() {
         >
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <h2 className="text-4xl font-serif font-bold text-white mb-4">
+              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white mb-4">
                 Ready to Apply?
               </h2>
               <p className="text-lg text-white/90 mb-6">
                 Take the first step towards joining Divine Lifting School. Our
                 admissions team is ready to help you through the process.
               </p>
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="inline-block bg-gradient-to-r from-[#fbbf24] to-[#d97706] hover:from-[#d97706] hover:to-[#b45309] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:-translate-y-0.5 shadow-md"
               >
                 Contact Admissions
-              </a>
+              </Link>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
                 { icon: Users, text: "500+ Students" },
                 { icon: FileText, text: "Easy Application" },
