@@ -27,19 +27,19 @@ export default function Navbar() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center gap-8">
-          <div className="flex items-center min-w-0 flex-shrink">
+        <div className="flex justify-between items-center gap-6">
+          <div className="flex items-center flex-shrink-0">
             <Link to="/" className="flex items-center gap-3 min-w-0" onClick={() => setIsOpen(false)}>
               <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center p-1 shadow-lg flex-shrink-0">
                 <img src={logoImg} alt="Divine Lifting School" className="w-full h-full object-contain" />
               </div>
-              <div className={`font-serif font-bold text-lg xl:text-xl truncate max-w-[280px] xl:max-w-none ${scrolled ? 'text-primary' : 'text-white'}`}>
+              <div className={`font-serif font-bold text-base xl:text-xl whitespace-nowrap ${scrolled ? 'text-primary' : 'text-white'}`}>
                 {schoolConfig.name}
               </div>
             </Link>
           </div>
 
-          <div className="hidden lg:flex items-center gap-6 xl:gap-8 flex-shrink-0">
+          <div className="hidden lg:flex items-center gap-5 xl:gap-8 flex-shrink-0">
             {navLinks.map((link) => (
               <NavLink
                 key={link.name}
@@ -51,14 +51,14 @@ export default function Navbar() {
             ))}
             <Link
               to="/admissions"
-              className="bg-secondary hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg"
+              className="bg-secondary hover:bg-orange-600 text-white px-5 xl:px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg"
             >
               Apply Now
             </Link>
             <a
               href="https://divine-lifting-school.vercel.app"
               rel="prefetch"
-              className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg"
+              className="bg-green-600 hover:bg-green-700 text-white px-5 xl:px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg"
             >
               Portal Login
             </a>
