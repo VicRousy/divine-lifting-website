@@ -1,15 +1,61 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageCircle, CheckCircle } from "lucide-react";
+import { supabase } from "../supabaseClient";
 import schoolImg from '../assets/school.jpg.jpeg';
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    program: '',
+    message: ''
+  })
+  const [submitting, setSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState('')
+
   const contactInfo = [
     { icon: MapPin, title: "Address", details: "13, Temidayo Street, New Era Estate, Parafa, Ikorodu, Lagos State", color: "#1e3a8a" },
     { icon: Phone, title: "Phone & WhatsApp", details: "07030136929", color: "#10b981" },
     { icon: Mail, title: "School Email", details: "divineliftingintlschl@gmail.com", color: "#f97316" },
     { icon: Mail, title: "Owner Email", details: "stellaokoko3@gmail.com", color: "#7c3aed" },
   ];
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setSubmitting(true)
+    setError('')
+
+    try {
+      const { error: insertError } = await supabase
+        .from('contact_messages')
+        .insert([{
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || null,
+          program: formData.program || null,
+          message: formData.message
+        }])
+
+      if (insertError) throw insertError
+
+      setSubmitted(true)
+      setFormData({ name: '', email: '', phone: '', program: '', message: '' })
+    } catch (err) {
+      console.error('Error submitting contact form:', err)
+      setError('Failed to send message. Please try again or contact us directly.')
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  const inputClass = "w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1e3a8a] transition-colors"
 
   return (
     <section className="relative">
@@ -39,43 +85,61 @@ export default function Contact() {
 
         {/* Contact Form */}
         <div className="bg-white rounded-2xl shadow-2xl p-8 lg:p-12 max-w-3xl mx-auto">
-          <form action="YOUR_FORMSPREE_URL_HERE" method="POST" className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-bold text-[#1f2937] mb-2">Full Name *</label>
-                <input type="text" name="name" required className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1e3a8a]" placeholder="Your full name" />
-              </div>
-              <div>
-                <label className="block text-sm font-bold text-[#1f2937] mb-2">Email Address *</label>
-                <input type="email" name="email" required className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1e3a8a]" placeholder="your@email.com" />
-              </div>
+          {submitted ? (
+            <div className="text-center py-8">
+              <CheckCircle size={64} className="mx-auto text-green-500 mb-4" />
+              <h3 className="text-2xl font-bold text-[#1f2937] mb-2">Message Sent!</h3>
+              <p className="text-gray-600">Thank you for reaching out. We'll get back to you shortly.</p>
+              <button
+                onClick={() => setSubmitted(false)}
+                className="mt-6 text-[#1e3a8a] font-semibold hover:underline"
+              >
+                Send Another Message
+              </button>
             </div>
-            
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-bold text-[#1f2937] mb-2">Phone Number</label>
-                <input type="tel" name="phone" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1e3a8a]" placeholder="07030136929" />
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-bold text-[#1f2937] mb-2">Full Name *</label>
+                  <input type="text" name="name" value={formData.name} onChange={handleChange} required className={inputClass} placeholder="Your full name" />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-[#1f2937] mb-2">Email Address *</label>
+                  <input type="email" name="email" value={formData.email} onChange={handleChange} required className={inputClass} placeholder="your@email.com" />
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-bold text-[#1f2937] mb-2">Program Interest *</label>
-                <select name="program" required className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1e3a8a]">
-                  <option value="">Select a program</option>
-                  <option value="kindergarten">Kindergarten</option>
-                  <option value="primary">Primary School</option>
-                  <option value="secondary">Secondary School</option>
-                </select>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-bold text-[#1f2937] mb-2">Phone Number</label>
+                  <input type="tel" name="phone" value={formData.phone} onChange={handleChange} className={inputClass} placeholder="07030136929" />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-[#1f2937] mb-2">Program Interest *</label>
+                  <select name="program" value={formData.program} onChange={handleChange} required className={inputClass}>
+                    <option value="">Select a program</option>
+                    <option value="kindergarten">Kindergarten</option>
+                    <option value="primary">Primary School</option>
+                    <option value="secondary">Secondary School</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            
-            <div>
-              <label className="block text-sm font-bold text-[#1f2937] mb-2">Message *</label>
-              <textarea name="message" required rows="5" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1e3a8a] resize-none" placeholder="Tell us about your inquiry..."></textarea>
-            </div>
-            
-            <button type="submit" className="w-full bg-[#1e3a8a] hover:bg-[#1e40af] text-white font-bold py-4 rounded-lg transition-all flex items-center justify-center gap-2 shadow-md">
-              <Send size={20} /> Send Message
-            </button>
-          </form>
+              
+              <div>
+                <label className="block text-sm font-bold text-[#1f2937] mb-2">Message *</label>
+                <textarea name="message" value={formData.message} onChange={handleChange} required rows="5" className={`${inputClass} resize-none`} placeholder="Tell us about your inquiry..."></textarea>
+              </div>
+
+              {error && (
+                <p className="text-red-600 text-sm text-center bg-red-50 p-3 rounded-lg">{error}</p>
+              )}
+              
+              <button type="submit" disabled={submitting} className="w-full bg-[#1e3a8a] hover:bg-[#1e40af] disabled:bg-gray-400 text-white font-bold py-4 rounded-lg transition-all flex items-center justify-center gap-2 shadow-md">
+                <Send size={20} /> {submitting ? 'Sending...' : 'Send Message'}
+              </button>
+            </form>
+          )}
         </div>
       </div>
 

@@ -1,0 +1,67 @@
+-- Divine Lifting Website - Supabase Integration Migration
+-- Run this in Supabase Dashboard > SQL Editor
+-- 
+-- This migration:
+-- 1. Ensures public_news has public read access (for the website)
+-- 2. Creates contact_messages table for the public contact form
+
+-- 1. Ensure public_news has public read access
+ALTER TABLE IF EXISTS public.public_news ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Public can read public_news" ON public.public_news;
+CREATE POLICY "Public can read public_news"
+  ON public.public_news FOR SELECT
+  USING (true);
+
+DROP POLICY IF EXISTS "Authenticated users can insert public_news" ON public.public_news;
+CREATE POLICY "Authenticated users can insert public_news"
+  ON public.public_news FOR INSERT
+  TO authenticated
+  WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Authenticated users can update public_news" ON public.public_news;
+CREATE POLICY "Authenticated users can update public_news"
+  ON public.public_news FOR UPDATE
+  TO authenticated
+  USING (true)
+  WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Authenticated users can delete public_news" ON public.public_news;
+CREATE POLICY "Authenticated users can delete public_news"
+  ON public.public_news FOR DELETE
+  TO authenticated
+  USING (true);
+
+-- 2. Contact messages table for public website form submissions
+CREATE TABLE IF NOT EXISTS public.contact_messages (
+  id BIGSERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT,
+  program TEXT,
+  message TEXT NOT NULL,
+  is_read BOOLEAN NOT NULL DEFAULT false,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+ALTER TABLE public.contact_messages ENABLE ROW LEVEL SECURITY;
+
+-- Allow anyone (including anonymous website visitors) to submit messages
+DROP POLICY IF EXISTS "Anyone can insert contact_messages" ON public.contact_messages;
+CREATE POLICY "Anyone can insert contact_messages"
+  ON public.contact_messages FOR INSERT
+  WITH CHECK (true);
+
+-- Only authenticated users (admin from portal) can read messages
+DROP POLICY IF EXISTS "Authenticated users can read contact_messages" ON public.contact_messages;
+CREATE POLICY "Authenticated users can read contact_messages"
+  ON public.contact_messages FOR SELECT
+  TO authenticated
+  USING (true);
+
+DROP POLICY IF EXISTS "Authenticated users can update contact_messages" ON public.contact_messages;
+CREATE POLICY "Authenticated users can update contact_messages"
+  ON public.contact_messages FOR UPDATE
+  TO authenticated
+  USING (true)
+  WITH CHECK (true);
