@@ -132,19 +132,22 @@ export default function News() {
                       <Newspaper size={64} />
                     </div>
                   )}
-                  <div className="p-8 md:p-12 flex flex-col justify-center bg-gradient-to-br from-gray-50 to-gray-100">
-                    <span className="inline-block text-secondary text-xs font-bold uppercase tracking-wider bg-secondary/10 px-3 py-1 rounded-full mb-4 w-fit">
-                      {featured.category}
-                    </span>
-                    <h2 className="text-2xl md:text-3xl font-serif font-bold text-primary mb-4">
-                      {featured.title}
-                    </h2>
-                    <p className="text-gray-600 mb-6 leading-relaxed">{featured.excerpt}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="flex items-center gap-2 text-sm text-gray-500">
-                        <Calendar size={16} />
-                        {new Date(featured.published_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  <div className="p-8 md:p-12 flex flex-col justify-center relative">
+                    <div className="absolute left-0 top-8 bottom-8 w-1.5 bg-secondary rounded-r-full"></div>
+                    <div className="pl-6">
+                      <span className="inline-flex items-center gap-2 text-secondary text-xs font-bold uppercase tracking-wider bg-secondary/10 px-4 py-1.5 rounded-full mb-4 w-fit border border-secondary/20">
+                        {featured.category}
                       </span>
+                      <h2 className="text-2xl md:text-3xl font-serif font-bold text-primary mb-4 leading-tight">
+                        {featured.title}
+                      </h2>
+                      <p className="text-gray-600 mb-8 leading-relaxed text-base">{featured.excerpt}</p>
+                      <div className="flex items-center gap-4 pt-4 border-t border-gray-200">
+                        <span className="flex items-center gap-2 text-sm text-gray-500">
+                          <Calendar size={16} className="text-secondary" />
+                          {new Date(featured.published_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -176,16 +179,16 @@ export default function News() {
                   )}
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-secondary text-xs font-bold uppercase tracking-wider bg-secondary/10 px-3 py-1 rounded-full">
+                      <span className="text-secondary text-xs font-bold uppercase tracking-wider bg-secondary/10 px-3 py-1 rounded-full border border-secondary/20">
                         {item.category}
                       </span>
                       <span className="flex items-center gap-1 text-xs text-gray-500">
-                        <Calendar size={14} />
+                        <Calendar size={14} className="text-secondary/70" />
                         {new Date(item.published_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
                       </span>
                     </div>
-                    <h3 className="text-xl font-bold text-primary mb-3">{item.title}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed mb-4">{item.excerpt}</p>
+                    <h3 className="text-xl font-bold text-primary mb-3 leading-snug">{item.title}</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">{item.excerpt}</p>
                     <span className="inline-flex items-center gap-1 text-secondary text-sm font-bold group-hover:gap-2 transition-all">
                       Read More <ChevronRight size={16} />
                     </span>
