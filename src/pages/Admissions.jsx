@@ -189,12 +189,12 @@ export default function Admissions() {
                     </ul>
                   </div>
 
-                  <a
-                    href="#apply"
+                  <Link
+                    to="/apply"
                     className="block text-center bg-[#f97316] hover:bg-[#ea580c] text-white font-bold py-2 rounded-lg transition-colors duration-300"
                   >
                     Apply Now
-                  </a>
+                  </Link>
                 </motion.div>
               ))}
             </motion.div>
@@ -293,10 +293,7 @@ export default function Admissions() {
           </div>
         </section>
 
-        <section
-          id="apply"
-          className="py-12 bg-[#34d399]"
-        >
+        <section className="py-12 bg-[#34d399]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -313,12 +310,20 @@ export default function Admissions() {
                   Take the first step towards joining Divine Lifting School. Our
                   admissions team is ready to help you through the process.
                 </p>
-                <Link
-                  to="/contact"
-                  className="inline-block bg-gradient-to-r from-[#fbbf24] to-[#d97706] hover:from-[#d97706] hover:to-[#b45309] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:-translate-y-0.5 shadow-md"
-                >
-                  Contact Admissions
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link
+                    to="/apply"
+                    className="inline-block bg-gradient-to-r from-[#fbbf24] to-[#d97706] hover:from-[#d97706] hover:to-[#b45309] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:-translate-y-0.5 shadow-md text-center"
+                  >
+                    Apply Now
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="inline-block bg-white text-primary px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:bg-gray-100 shadow-md text-center"
+                  >
+                    Contact Admissions
+                  </Link>
+                </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {statsData.map((item, idx) => {

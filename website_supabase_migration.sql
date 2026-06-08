@@ -80,7 +80,64 @@ CREATE POLICY "Public can delete contact_messages"
   ON public.contact_messages FOR DELETE
   USING (true);
 
--- 3. Storage policies for news_images bucket
+-- 3. Applications table for online admission forms
+CREATE TABLE IF NOT EXISTS public.applications (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  application_number TEXT NOT NULL UNIQUE,
+  status TEXT NOT NULL DEFAULT 'pending',
+  student_first_name TEXT NOT NULL,
+  student_last_name TEXT NOT NULL,
+  student_dob DATE NOT NULL,
+  student_gender TEXT NOT NULL,
+  class_applying_for TEXT NOT NULL,
+  previous_school TEXT,
+  father_name TEXT,
+  father_phone TEXT,
+  father_email TEXT,
+  mother_name TEXT,
+  mother_phone TEXT,
+  mother_email TEXT,
+  address TEXT NOT NULL,
+  emergency_contact_name TEXT NOT NULL,
+  emergency_contact_phone TEXT NOT NULL,
+  medical_notes TEXT,
+  how_heard TEXT,
+  siblings_enrolled BOOLEAN DEFAULT false,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+ALTER TABLE public.applications ENABLE ROW LEVEL SECURITY;
+
+-- Allow anyone to submit applications
+DROP POLICY IF EXISTS "Anyone can submit applications" ON public.applications;
+CREATE POLICY "Anyone can submit applications"
+  ON public.applications FOR INSERT
+  WITH CHECK (true);
+
+-- Allow portal (anon key) to read and update applications
+DROP POLICY IF EXISTS "Portal can read applications" ON public.applications;
+CREATE POLICY "Portal can read applications"
+  ON public.applications FOR SELECT
+  USING (true);
+
+DROP POLICY IF EXISTS "Portal can update applications" ON public.applications;
+CREATE POLICY "Portal can update applications"
+  ON public.applications FOR UPDATE
+  USING (true)
+  WITH CHECK (true);
+
+-- Auto-generate application number sequence
+CREATE SEQUENCE IF NOT EXISTS public.application_number_seq START 1;
+
+-- Function to get the next application number
+CREATE OR REPLACE FUNCTION public.next_application_number()
+RETURNS INTEGER
+LANGUAGE SQL
+AS $$
+  SELECT nextval('public.application_number_seq')::int;
+$$;
+
+-- 4. Storage policies for news_images bucket
 -- Allow anyone to view images (public bucket)
 DROP POLICY IF EXISTS "Public can view news_images" ON storage.objects;
 CREATE POLICY "Public can view news_images"

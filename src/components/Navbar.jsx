@@ -52,7 +52,7 @@ export default function Navbar() {
             ))}
             <div className="flex items-center gap-2">
               <Link
-                to="/admissions"
+                to="/apply"
                 className="bg-secondary hover:bg-orange-600 text-white px-3 xl:px-5 py-1.5 xl:py-2 rounded-lg text-xs xl:text-sm font-medium transition-all transform hover:scale-105 shadow-lg whitespace-nowrap"
               >
                 Apply Now
@@ -95,7 +95,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <Link
-                to="/admissions"
+                to="/apply"
                 onClick={() => setIsOpen(false)}
                 className="block w-full text-center bg-secondary text-white py-3 rounded-lg font-bold"
               >

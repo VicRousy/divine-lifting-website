@@ -12,6 +12,7 @@ const Facilities = lazy(() => import('./pages/Facilities'))
 const Contact = lazy(() => import('./pages/Contact'))
 const News = lazy(() => import('./pages/News'))
 const NewsDetail = lazy(() => import('./pages/NewsDetail'))
+const Apply = lazy(() => import('./pages/Apply'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/news" element={<News />} />
                 <Route path="/news/:id" element={<NewsDetail />} />
+                <Route path="/apply" element={<Apply />} />
               <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
