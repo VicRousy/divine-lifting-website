@@ -24,24 +24,21 @@ CREATE POLICY "Public can read public_news"
   ON public.public_news FOR SELECT
   USING (true);
 
--- Only authenticated users (portal admin) can insert/update/delete
-DROP POLICY IF EXISTS "Authenticated users can insert public_news" ON public.public_news;
-CREATE POLICY "Authenticated users can insert public_news"
+-- Allow portal (uses anon key with custom auth) to manage news
+DROP POLICY IF EXISTS "Public can insert public_news" ON public.public_news;
+CREATE POLICY "Public can insert public_news"
   ON public.public_news FOR INSERT
-  TO authenticated
   WITH CHECK (true);
 
-DROP POLICY IF EXISTS "Authenticated users can update public_news" ON public.public_news;
-CREATE POLICY "Authenticated users can update public_news"
+DROP POLICY IF EXISTS "Public can update public_news" ON public.public_news;
+CREATE POLICY "Public can update public_news"
   ON public.public_news FOR UPDATE
-  TO authenticated
   USING (true)
   WITH CHECK (true);
 
-DROP POLICY IF EXISTS "Authenticated users can delete public_news" ON public.public_news;
-CREATE POLICY "Authenticated users can delete public_news"
+DROP POLICY IF EXISTS "Public can delete public_news" ON public.public_news;
+CREATE POLICY "Public can delete public_news"
   ON public.public_news FOR DELETE
-  TO authenticated
   USING (true);
 
 -- 2. Contact messages table for public website form submissions
