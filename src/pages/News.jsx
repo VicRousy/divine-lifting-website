@@ -132,7 +132,7 @@ export default function News() {
                       <Newspaper size={64} />
                     </div>
                   )}
-                  <div className="p-8 md:p-12 flex flex-col justify-center relative">
+                  <div className="p-8 md:p-12 flex flex-col justify-center relative bg-gray-50">
                     <div className="absolute left-0 top-8 bottom-8 w-1.5 bg-secondary rounded-r-full"></div>
                     <div className="pl-6">
                       <span className="inline-flex items-center gap-2 text-secondary text-xs font-bold uppercase tracking-wider bg-secondary/10 px-4 py-1.5 rounded-full mb-4 w-fit border border-secondary/20">
