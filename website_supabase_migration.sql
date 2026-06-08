@@ -1,18 +1,30 @@
 -- Divine Lifting Website - Supabase Integration Migration
 -- Run this in Supabase Dashboard > SQL Editor
--- 
+--
 -- This migration:
--- 1. Ensures public_news has public read access (for the website)
+-- 1. Creates public_news table if it doesn't exist + sets public read access
 -- 2. Creates contact_messages table for the public contact form
 
--- 1. Ensure public_news has public read access
-ALTER TABLE IF EXISTS public.public_news ENABLE ROW LEVEL SECURITY;
+-- 1. public_news table (for admins to post news from the portal)
+CREATE TABLE IF NOT EXISTS public.public_news (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  title TEXT NOT NULL,
+  category TEXT NOT NULL DEFAULT 'General',
+  excerpt TEXT,
+  image_url TEXT,
+  published_date DATE NOT NULL DEFAULT CURRENT_DATE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
 
+ALTER TABLE public.public_news ENABLE ROW LEVEL SECURITY;
+
+-- Allow everyone (including website visitors) to read news
 DROP POLICY IF EXISTS "Public can read public_news" ON public.public_news;
 CREATE POLICY "Public can read public_news"
   ON public.public_news FOR SELECT
   USING (true);
 
+-- Only authenticated users (portal admin) can insert/update/delete
 DROP POLICY IF EXISTS "Authenticated users can insert public_news" ON public.public_news;
 CREATE POLICY "Authenticated users can insert public_news"
   ON public.public_news FOR INSERT
