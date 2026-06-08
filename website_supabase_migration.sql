@@ -82,3 +82,28 @@ DROP POLICY IF EXISTS "Public can delete contact_messages" ON public.contact_mes
 CREATE POLICY "Public can delete contact_messages"
   ON public.contact_messages FOR DELETE
   USING (true);
+
+-- 3. Storage policies for news_images bucket
+-- Allow anyone to view images (public bucket)
+DROP POLICY IF EXISTS "Public can view news_images" ON storage.objects;
+CREATE POLICY "Public can view news_images"
+  ON storage.objects FOR SELECT
+  USING (bucket_id = 'news_images');
+
+-- Allow uploads to news_images (portal uses anon key, so public access)
+DROP POLICY IF EXISTS "Public can upload news_images" ON storage.objects;
+CREATE POLICY "Public can upload news_images"
+  ON storage.objects FOR INSERT
+  WITH CHECK (bucket_id = 'news_images');
+
+-- Allow updates and deletes
+DROP POLICY IF EXISTS "Public can update news_images" ON storage.objects;
+CREATE POLICY "Public can update news_images"
+  ON storage.objects FOR UPDATE
+  USING (bucket_id = 'news_images')
+  WITH CHECK (bucket_id = 'news_images');
+
+DROP POLICY IF EXISTS "Public can delete news_images" ON storage.objects;
+CREATE POLICY "Public can delete news_images"
+  ON storage.objects FOR DELETE
+  USING (bucket_id = 'news_images');
