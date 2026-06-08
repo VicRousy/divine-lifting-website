@@ -50,19 +50,21 @@ export default function Navbar() {
                 {link.name}
               </NavLink>
             ))}
-            <Link
-              to="/admissions"
-              className="bg-secondary hover:bg-orange-600 text-white px-3 xl:px-5 py-1.5 xl:py-2 rounded-lg text-xs xl:text-sm font-medium transition-all transform hover:scale-105 shadow-lg whitespace-nowrap"
-            >
-              Apply Now
-            </Link>
-            <a
-              href="https://divine-lifting-school.vercel.app"
-              rel="prefetch"
-              className="bg-green-600 hover:bg-green-700 text-white px-3 xl:px-5 py-1.5 xl:py-2 rounded-lg text-xs xl:text-sm font-medium transition-all transform hover:scale-105 shadow-lg whitespace-nowrap"
-            >
-              Portal Login
-            </a>
+            <div className="flex items-center gap-2">
+              <Link
+                to="/admissions"
+                className="bg-secondary hover:bg-orange-600 text-white px-3 xl:px-5 py-1.5 xl:py-2 rounded-lg text-xs xl:text-sm font-medium transition-all transform hover:scale-105 shadow-lg whitespace-nowrap"
+              >
+                Apply Now
+              </Link>
+              <a
+                href="https://divine-lifting-school.vercel.app"
+                rel="prefetch"
+                className="bg-green-600 hover:bg-green-700 text-white px-3 xl:px-5 py-1.5 xl:py-2 rounded-lg text-xs xl:text-sm font-medium transition-all transform hover:scale-105 shadow-lg whitespace-nowrap"
+              >
+                Portal Login
+              </a>
+            </div>
           </div>
 
           <div className="lg:hidden">
