@@ -80,7 +80,7 @@ export default function NewsGrid() {
                     <Calendar size={14} className="mr-2" /> {new Date(item.published_date).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}
                   </div>
                   <p className="text-gray-600 mb-4">{item.excerpt}</p>
-                <Link to="/news" className="inline-flex items-center gap-2 text-secondary font-bold hover:gap-3 transition-all">
+                <Link to={`/news/${item.id}`} className="inline-flex items-center gap-2 text-secondary font-bold hover:gap-3 transition-all">
                   Read More <ArrowRight size={18} />
                 </Link>
                 </div>
