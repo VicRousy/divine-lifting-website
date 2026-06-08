@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Calendar, RefreshCw, Newspaper } from 'lucide-react'
+import { Calendar, RefreshCw, Newspaper, ChevronRight } from 'lucide-react'
 import { supabase } from '../supabaseClient'
+import schoolImg from '../assets/school.jpg.jpeg'
+
+const categories = ['All', 'Academics', 'Events', 'Sports', 'Admissions', 'General']
 
 export default function News() {
   const [news, setNews] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [activeCategory, setActiveCategory] = useState('All')
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -29,21 +33,57 @@ export default function News() {
     fetchNews()
   }, [])
 
+  const filtered = activeCategory === 'All'
+    ? news
+    : news.filter(item => item.category === activeCategory)
+
+  const featured = filtered[0]
+  const rest = filtered.slice(1)
+
   return (
-    <div className="min-h-screen bg-gray-50 pt-28 pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary mb-4">
+    <div className="bg-cream min-h-screen">
+      {/* Hero */}
+      <section className="relative py-32 flex items-center justify-center text-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img src={schoolImg} alt="School" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-primary/80"></div>
+        </div>
+        <div className="relative z-10 px-4">
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-5xl font-serif font-bold text-white mb-4"
+          >
             News & Events
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Stay updated with the latest happenings at Divine Lifting School
-          </p>
-        </motion.div>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-lg text-gray-300 max-w-xl mx-auto"
+          >
+            Stay updated with the latest happenings at Divine Lifting International School
+          </motion.p>
+        </div>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Category Filter */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {categories.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${
+                activeCategory === cat
+                  ? 'bg-secondary text-white shadow-md'
+                  : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
 
         {loading && (
           <div className="flex flex-col items-center justify-center py-20 text-gray-400">
@@ -58,52 +98,102 @@ export default function News() {
           </div>
         )}
 
-        {!loading && !error && news.length === 0 && (
+        {!loading && !error && filtered.length === 0 && (
           <div className="text-center py-20">
             <Newspaper size={48} className="mx-auto text-gray-300 mb-4" />
-            <p className="text-gray-400">No news available at this time. Check back later.</p>
+            <p className="text-gray-400">
+              {activeCategory === 'All'
+                ? 'No news available at this time. Check back later.'
+                : `No ${activeCategory.toLowerCase()} news available.`}
+            </p>
           </div>
         )}
 
-        {!loading && !error && news.length > 0 && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {news.map((item, index) => (
+        {!loading && !error && filtered.length > 0 && (
+          <>
+            {/* Featured Article */}
+            {featured && (
               <motion.div
-                key={item.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all group"
+                className="bg-white rounded-3xl overflow-hidden shadow-lg mb-12 group hover:shadow-xl transition-all"
               >
-                {item.image_url ? (
-                  <div className="h-48 overflow-hidden">
-                    <img
-                      src={item.image_url}
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
-                ) : (
-                  <div className="h-48 bg-gray-200 flex items-center justify-center text-gray-400">
-                    <Newspaper size={40} />
-                  </div>
-                )}
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-secondary text-xs font-bold uppercase tracking-wider bg-secondary/10 px-3 py-1 rounded-full">
-                      {item.category}
+                <div className="grid md:grid-cols-2 gap-0">
+                  {featured.image_url ? (
+                    <div className="h-64 md:h-full overflow-hidden">
+                      <img
+                        src={featured.image_url}
+                        alt={featured.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  ) : (
+                    <div className="h-64 md:h-full bg-gray-200 flex items-center justify-center text-gray-400">
+                      <Newspaper size={64} />
+                    </div>
+                  )}
+                  <div className="p-8 md:p-12 flex flex-col justify-center">
+                    <span className="inline-block text-secondary text-xs font-bold uppercase tracking-wider bg-secondary/10 px-3 py-1 rounded-full mb-4 w-fit">
+                      {featured.category}
                     </span>
-                    <span className="flex items-center gap-1 text-xs text-gray-500">
-                      <Calendar size={14} />
-                      {new Date(item.published_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
-                    </span>
+                    <h2 className="text-2xl md:text-3xl font-serif font-bold text-primary mb-4">
+                      {featured.title}
+                    </h2>
+                    <p className="text-gray-600 mb-6 leading-relaxed">{featured.excerpt}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="flex items-center gap-2 text-sm text-gray-500">
+                        <Calendar size={16} />
+                        {new Date(featured.published_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+                      </span>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-primary mb-3">{item.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{item.excerpt}</p>
                 </div>
               </motion.div>
-            ))}
-          </div>
+            )}
+
+            {/* Rest of Articles */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {rest.map((item, index) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all group"
+                >
+                  {item.image_url ? (
+                    <div className="h-48 overflow-hidden">
+                      <img
+                        src={item.image_url}
+                        alt={item.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    </div>
+                  ) : (
+                    <div className="h-48 bg-gray-200 flex items-center justify-center text-gray-400">
+                      <Newspaper size={40} />
+                    </div>
+                  )}
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-secondary text-xs font-bold uppercase tracking-wider bg-secondary/10 px-3 py-1 rounded-full">
+                        {item.category}
+                      </span>
+                      <span className="flex items-center gap-1 text-xs text-gray-500">
+                        <Calendar size={14} />
+                        {new Date(item.published_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-bold text-primary mb-3">{item.title}</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed mb-4">{item.excerpt}</p>
+                    <span className="inline-flex items-center gap-1 text-secondary text-sm font-bold group-hover:gap-2 transition-all">
+                      Read More <ChevronRight size={16} />
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </>
         )}
       </div>
     </div>
