@@ -40,26 +40,26 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <div className="hidden lg:flex items-center gap-5 xl:gap-8 flex-shrink-0">
+          <div className="hidden lg:flex items-center gap-3 xl:gap-6 flex-shrink-0">
             {navLinks.map((link) => (
               <NavLink
                 key={link.name}
                 to={link.href}
-                className={({ isActive }) => `text-sm font-medium transition-colors hover:text-secondary ${isActive ? 'text-secondary' : scrolled ? 'text-primary' : 'text-white/90'}`}
+                className={({ isActive }) => `text-xs xl:text-sm font-medium transition-colors hover:text-secondary whitespace-nowrap ${isActive ? 'text-secondary' : scrolled ? 'text-primary' : 'text-white/90'}`}
               >
                 {link.name}
               </NavLink>
             ))}
             <Link
               to="/admissions"
-              className="bg-secondary hover:bg-orange-600 text-white px-5 xl:px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg"
+              className="bg-secondary hover:bg-orange-600 text-white px-3 xl:px-5 py-1.5 xl:py-2 rounded-lg text-xs xl:text-sm font-medium transition-all transform hover:scale-105 shadow-lg whitespace-nowrap"
             >
               Apply Now
             </Link>
             <a
               href="https://divine-lifting-school.vercel.app"
               rel="prefetch"
-              className="bg-green-600 hover:bg-green-700 text-white px-5 xl:px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg"
+              className="bg-green-600 hover:bg-green-700 text-white px-3 xl:px-5 py-1.5 xl:py-2 rounded-lg text-xs xl:text-sm font-medium transition-all transform hover:scale-105 shadow-lg whitespace-nowrap"
             >
               Portal Login
             </a>
