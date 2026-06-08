@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Calendar, ArrowRight, RefreshCw } from 'lucide-react'
+import { Calendar, ArrowRight, RefreshCw, Newspaper } from 'lucide-react'
 import { supabase } from '../supabaseClient'
 
 export default function NewsGrid() {
@@ -69,7 +69,9 @@ export default function NewsGrid() {
                     <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                   </div>
                 ) : (
-                  <div className="h-48 bg-gray-200 flex items-center justify-center text-gray-400">No Image</div>
+                  <div className="h-48 bg-gray-100 flex items-center justify-center text-gray-400">
+                    <Newspaper size={32} />
+                  </div>
                 )}
                 <div className="p-6">
                   <span className="text-secondary text-xs font-bold uppercase tracking-wider">{item.category}</span>

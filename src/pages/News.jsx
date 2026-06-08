@@ -77,7 +77,7 @@ export default function News() {
               className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${
                 activeCategory === cat
                   ? 'bg-secondary text-white shadow-md'
-                  : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100 border border-gray-200'
               }`}
             >
               {cat}
@@ -116,7 +116,7 @@ export default function News() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white rounded-3xl overflow-hidden shadow-lg mb-12 group hover:shadow-xl transition-all"
+                className="bg-gray-50 rounded-3xl overflow-hidden shadow-lg mb-12 group hover:shadow-xl transition-all border border-gray-100"
               >
                 <div className="grid md:grid-cols-2 gap-0">
                   {featured.image_url ? (
@@ -128,11 +128,11 @@ export default function News() {
                       />
                     </div>
                   ) : (
-                    <div className="h-64 md:h-full bg-gray-200 flex items-center justify-center text-gray-400">
+                    <div className="h-64 md:h-full bg-gray-100 flex items-center justify-center text-gray-400">
                       <Newspaper size={64} />
                     </div>
                   )}
-                  <div className="p-8 md:p-12 flex flex-col justify-center">
+                  <div className="p-8 md:p-12 flex flex-col justify-center bg-gradient-to-br from-gray-50 to-gray-100">
                     <span className="inline-block text-secondary text-xs font-bold uppercase tracking-wider bg-secondary/10 px-3 py-1 rounded-full mb-4 w-fit">
                       {featured.category}
                     </span>
@@ -159,7 +159,7 @@ export default function News() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all group"
+                  className="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all group border border-gray-100"
                 >
                   {item.image_url ? (
                     <div className="h-48 overflow-hidden">
@@ -170,7 +170,7 @@ export default function News() {
                       />
                     </div>
                   ) : (
-                    <div className="h-48 bg-gray-200 flex items-center justify-center text-gray-400">
+                    <div className="h-48 bg-gray-100 flex items-center justify-center text-gray-400">
                       <Newspaper size={40} />
                     </div>
                   )}
