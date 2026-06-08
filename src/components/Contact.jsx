@@ -45,6 +45,12 @@ export default function Contact() {
 
       if (insertError) throw insertError
 
+      fetch('/api/contact-notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      }).catch(() => {})
+
       setSubmitted(true)
       setFormData({ name: '', email: '', phone: '', program: '', message: '' })
     } catch (err) {
