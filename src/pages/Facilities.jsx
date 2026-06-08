@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import Facilities from "../components/Facilities";
 import schoolImg from "../assets/school.jpg.jpeg";
@@ -60,7 +61,10 @@ export default function FacilitiesPage() {
 
   return (
     <div className="bg-white">
-      {/* Hero Section */}
+      <Helmet>
+        <title>Facilities</title>
+        <meta name="description" content="Discover our state-of-the-art facilities at Divine Lifting International School — science labs, sports complex, library, ICT center, and more." />
+      </Helmet>
       <section className="relative h-96 flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
           <img src={schoolImg} alt="School Campus" className="w-full h-full object-cover" />

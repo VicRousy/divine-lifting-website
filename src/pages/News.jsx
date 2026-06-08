@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Calendar, RefreshCw, Newspaper, ChevronRight } from 'lucide-react'
@@ -42,6 +43,10 @@ export default function News() {
 
   return (
     <div className="bg-cream min-h-screen">
+      <Helmet>
+        <title>News & Events</title>
+        <meta name="description" content="Stay updated with the latest news, events, and announcements from Divine Lifting International School." />
+      </Helmet>
       {/* Hero */}
       <section className="relative py-32 flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 z-0">

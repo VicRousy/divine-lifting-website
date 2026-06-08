@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { BookOpen, GraduationCap, Users, Target, BarChart3, Clock } from 'lucide-react'
 import { schoolConfig } from '../data/config'
@@ -12,6 +13,10 @@ const programs = [
 export default function Academics() {
   return (
     <div className="bg-gray-50">
+      <Helmet>
+        <title>Academics</title>
+        <meta name="description" content="Explore our academic programs from Nursery to Secondary — British and Nigerian curricula with 90%+ WAEC/NECO pass rate at Divine Lifting International School." />
+      </Helmet>
       {/* Hero */}
       <section className="relative py-32 flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 z-0">

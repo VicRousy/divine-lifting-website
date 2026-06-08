@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { BookOpen, Heart, Shield, Target, Users, Zap } from 'lucide-react'
 import { schoolConfig } from '../data/config'
@@ -16,6 +17,14 @@ const values = [
 export default function About() {
   return (
     <div className="bg-white">
+      <Helmet>
+        <title>About Us</title>
+        <meta name="description" content="Learn about Divine Lifting International School's mission, vision, core values, and the dedicated team shaping young minds through faith-based education." />
+      </Helmet>
+      <Helmet>
+        <title>About Us</title>
+        <meta name="description" content="Learn about Divine Lifting International School's mission, vision, core values, and the dedicated team shaping young minds through faith-based education." />
+      </Helmet>
       {/* Hero */}
       <section className="relative py-32 flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
