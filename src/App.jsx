@@ -9,6 +9,7 @@ const Academics = lazy(() => import('./pages/Academics'))
 const Admissions = lazy(() => import('./pages/Admissions'))
 const Facilities = lazy(() => import('./pages/Facilities'))
 const Contact = lazy(() => import('./pages/Contact'))
+const News = lazy(() => import('./pages/News'))
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path="/admissions" element={<Admissions />} />
               <Route path="/facilities" element={<Facilities />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/news" element={<News />} />
             </Routes>
           </Suspense>
         </main>

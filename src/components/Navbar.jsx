@@ -21,6 +21,7 @@ export default function Navbar() {
     { name: 'Academics', href: '/academics' },
     { name: 'Admissions', href: '/admissions' },
     { name: 'Facilities', href: '/facilities' },
+    { name: 'News', href: '/news' },
     { name: 'Contact', href: '/contact' },
   ]
 
