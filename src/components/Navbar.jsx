@@ -42,17 +42,17 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <div className="hidden lg:flex items-center gap-3 xl:gap-6 flex-shrink-0">
+          <div className="hidden lg:flex items-center gap-1 xl:gap-3 flex-shrink min-w-0 overflow-x-auto">
             {navLinks.map((link) => (
               <NavLink
                 key={link.name}
                 to={link.href}
-                className={({ isActive }) => `text-xs xl:text-sm font-medium transition-colors hover:text-secondary whitespace-nowrap ${isActive ? 'text-secondary' : scrolled ? 'text-primary' : 'text-white/90'}`}
+                className={({ isActive }) => `text-[11px] xl:text-xs font-medium transition-colors hover:text-secondary whitespace-nowrap ${isActive ? 'text-secondary' : scrolled ? 'text-primary' : 'text-white/90'}`}
               >
                 {link.name}
               </NavLink>
             ))}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 xl:gap-2 flex-shrink-0">
               <Link
                 to="/apply"
                 className="bg-secondary hover:bg-orange-600 text-white px-3 xl:px-5 py-1.5 xl:py-2 rounded-lg text-xs xl:text-sm font-medium transition-all transform hover:scale-105 shadow-lg whitespace-nowrap"
