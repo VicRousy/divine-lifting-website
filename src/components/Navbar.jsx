@@ -20,7 +20,9 @@ export default function Navbar() {
     { name: 'About Us', href: '/about' },
     { name: 'Academics', href: '/academics' },
     { name: 'Admissions', href: '/admissions' },
+    { name: 'Gallery', href: '/gallery' },
     { name: 'Facilities', href: '/facilities' },
+    { name: 'Staff', href: '/staff' },
     { name: 'News', href: '/news' },
     { name: 'Contact', href: '/contact' },
   ]
