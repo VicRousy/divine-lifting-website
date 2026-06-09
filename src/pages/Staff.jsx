@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { Users, Mail, BookOpen } from 'lucide-react'
-import schoolImg from '../assets/school.jpg.jpeg'
+const schoolImg = "/images/default-hero.jpg"
 
 const STAFF = [
   { name: 'Dr. Stella Okoko', role: 'Proprietress', department: 'Administration', email: 'stellaokoko3@gmail.com' },

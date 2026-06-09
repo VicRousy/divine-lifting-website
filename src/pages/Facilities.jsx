@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import Facilities from "../components/Facilities";
-import schoolImg from "../assets/school.jpg.jpeg";
+const schoolImg = "/images/default-hero.jpg";
 
 export default function FacilitiesPage() {
   const detailedFacilities = [

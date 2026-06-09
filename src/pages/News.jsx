@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Calendar, RefreshCw, Newspaper, ChevronRight } from 'lucide-react'
 import { getSupabase } from '../supabaseClient'
-import schoolImg from '../assets/school.jpg.jpeg'
+const schoolImg = "/images/default-hero.jpg"
 
 const categories = ['All', 'Academics', 'Events', 'Sports', 'Admissions', 'General']
 

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Camera } from 'lucide-react'
-import schoolImg from '../assets/school.jpg.jpeg'
+const schoolImg = "/images/default-hero.jpg"
 
 const CATEGORIES = ['All', 'School Building', 'Classrooms', 'Sports', 'Events', 'Students']
 

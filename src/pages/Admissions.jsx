@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { CheckCircle, FileText, Calendar, Users, Zap } from "lucide-react";
-import schoolImg from "../assets/school3.jpg.jpeg";
+const schoolImg = "/images/admissions-hero.jpg";
 
 const requirementsData = [
   {

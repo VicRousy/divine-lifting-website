@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { CheckCircle, Send, ArrowLeft } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { getSupabase } from '../supabaseClient'
-import schoolImg from '../assets/school3.jpg.jpeg'
+const schoolImg = "/images/admissions-hero.jpg"
 
 const PAGE_LOAD = Date.now()
 

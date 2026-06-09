@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Calendar, ArrowLeft, Newspaper, RefreshCw } from 'lucide-react'
 import { getSupabase } from '../supabaseClient'
-import schoolImg from '../assets/school.jpg.jpeg'
+const schoolImg = "/images/default-hero.jpg"
 
 export default function NewsDetail() {
   const { id } = useParams()

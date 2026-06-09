@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { BookOpen, Users, Clock } from 'lucide-react'
-import schoolImg from '../assets/school2.jpg.jpeg'
+const schoolImg = "/images/academics-hero.jpg"
 
 const programs = [
   { title: 'Nursery & Pre-Primary', age: 'Ages 2-5', desc: 'A solid foundation built on curiosity, creativity, and fundamental literacy and numeracy skills.' },

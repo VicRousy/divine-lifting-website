@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, MessageCircle, CheckCircle } from "lucide-react";
 import { getSupabase } from "../supabaseClient";
-import schoolImg from '../assets/school.jpg.jpeg';
+const schoolImg = "/images/default-hero.jpg";
 
 const PAGE_LOAD = Date.now()
 

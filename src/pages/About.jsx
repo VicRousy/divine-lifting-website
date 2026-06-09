@@ -3,8 +3,7 @@ import { BookOpen, Heart, Shield, Target, Users, Zap } from 'lucide-react'
 import { schoolConfig } from '../data/config'
 import proprietressImg from '../assets/proprietress.jpg.jpeg'
 import proprietressWebp from '../assets/proprietress.webp'
-import schoolImg from '../assets/school.jpg.jpeg'
-import schoolWebp from '../assets/school.webp'
+const schoolImg = "/images/default-hero.jpg"
 
 const values = [
   { icon: Heart, title: 'Faith in God', desc: 'Biblical foundation in all we do.', color: '#7c3aed' },
@@ -26,7 +25,6 @@ export default function About() {
       <section className="relative py-32 flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <picture>
-            <source srcSet={schoolWebp} type="image/webp" />
             <img src={schoolImg} alt="School Campus" className="w-full h-full object-cover" />
           </picture>
           <div className="absolute inset-0 bg-primary/80"></div>
