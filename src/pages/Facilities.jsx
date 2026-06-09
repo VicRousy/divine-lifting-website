@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+import Motion from "../components/Motion";
 import Facilities from "../components/Facilities";
 import schoolImg from "../assets/school.jpg.jpeg";
 
@@ -71,7 +71,7 @@ export default function FacilitiesPage() {
           <div className="absolute inset-0 bg-primary/80"></div>
         </div>
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-          <motion.div
+          <Motion
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -79,14 +79,14 @@ export default function FacilitiesPage() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-white mb-4">
               Our Facilities
             </h1>
-          </motion.div>
+          </Motion>
         </div>
       </section>
 
       {/* Detailed Facilities */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <Motion
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -96,16 +96,16 @@ export default function FacilitiesPage() {
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1e3a8a] mb-4">
               Facility Details
             </h2>
-          </motion.div>
+          </Motion>
 
-          <motion.div
+          <Motion
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             className="space-y-12"
           >
             {detailedFacilities.map((facility, idx) => (
-              <motion.div
+              <Motion
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -147,15 +147,15 @@ export default function FacilitiesPage() {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </Motion>
             ))}
-          </motion.div>
+          </Motion>
         </div>
       </section>
 
       {/* Virtual Tour CTA */}
       <section className="py-16 bg-[#1e3a8a]">
-        <motion.div
+        <Motion
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -175,7 +175,7 @@ export default function FacilitiesPage() {
           >
             Start Virtual Tour
           </a>
-        </motion.div>
+        </Motion>
       </section>
     </div>
   );

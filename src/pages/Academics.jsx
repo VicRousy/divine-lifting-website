@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async'
-import { motion } from 'framer-motion'
+import Motion from '../components/Motion'
 import { BookOpen, Users, Clock } from 'lucide-react'
 import { schoolConfig } from '../data/config'
 import schoolImg from '../assets/school2.jpg.jpeg'
@@ -46,11 +46,11 @@ export default function Academics() {
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">Our Programs</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {programs.map((p, i) => (
-              <motion.div key={p.title} whileHover={{ y: -5 }} className="p-8 bg-white rounded-2xl border border-gray-200 shadow-sm">
+              <Motion key={p.title} whileHover={{ y: -5 }} className="p-8 bg-white rounded-2xl border border-gray-200 shadow-sm">
                 <h3 className="text-2xl font-bold text-primary mb-2">{p.title}</h3>
                 <p className="text-secondary font-semibold mb-4">{p.age}</p>
                 <p className="text-gray-600">{p.desc}</p>
-              </motion.div>
+              </Motion>
             ))}
           </div>
         </div>

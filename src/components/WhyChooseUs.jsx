@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import Motion from './Motion'
 import { Link } from 'react-router-dom'
 import { BookOpen, Heart, Building2, ArrowRight } from 'lucide-react'
 
@@ -34,7 +34,7 @@ export default function WhyChooseUs() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <motion.div
+            <Motion
               key={feature.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ export default function WhyChooseUs() {
               <Link to="/about" className="inline-flex items-center gap-2 text-secondary font-bold hover:gap-3 transition-all">
                 Learn More <ArrowRight size={18} />
               </Link>
-            </motion.div>
+            </Motion>
           ))}
         </div>
       </div>

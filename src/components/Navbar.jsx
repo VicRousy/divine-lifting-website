@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { schoolConfig } from '../data/config'
 import logoImg from '../assets/logo.jpg.png'
@@ -77,43 +76,36 @@ export default function Navbar() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-xl border-t border-gray-100 max-h-[calc(100vh-76px)] overflow-y-auto"
-          >
-            <div className="px-4 py-6 space-y-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg font-medium text-primary hover:text-secondary"
-                >
-                  {link.name}
-                </Link>
-              ))}
+      <div className={`lg:hidden transition-all duration-300 ease-out overflow-hidden ${isOpen ? 'max-h-[calc(100vh-76px)] opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="absolute top-full left-0 right-0 bg-white shadow-xl border-t border-gray-100 overflow-y-auto">
+          <div className="px-4 py-6 space-y-4">
+            {navLinks.map((link) => (
               <Link
-                to="/apply"
+                key={link.name}
+                to={link.href}
                 onClick={() => setIsOpen(false)}
-                className="block w-full text-center bg-secondary text-white py-3 rounded-lg font-bold"
+                className="block text-lg font-medium text-primary hover:text-secondary"
               >
-                Apply Now
+                {link.name}
               </Link>
-              <a
-                href="https://divine-lifting-school.vercel.app?force_login=true"
-                onClick={() => setIsOpen(false)}
-                className="block w-full text-center bg-green-600 text-white py-3 rounded-lg font-bold"
-              >
-                Portal Login
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            ))}
+            <Link
+              to="/apply"
+              onClick={() => setIsOpen(false)}
+              className="block w-full text-center bg-secondary text-white py-3 rounded-lg font-bold"
+            >
+              Apply Now
+            </Link>
+            <a
+              href="https://divine-lifting-school.vercel.app?force_login=true"
+              onClick={() => setIsOpen(false)}
+              className="block w-full text-center bg-green-600 text-white py-3 rounded-lg font-bold"
+            >
+              Portal Login
+            </a>
+          </div>
+        </div>
+      </div>
     </nav>
   )
 }

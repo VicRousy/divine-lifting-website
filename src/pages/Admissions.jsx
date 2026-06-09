@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+import Motion from "../components/Motion";
 import { Link } from "react-router-dom";
 import { CheckCircle, FileText, Calendar, Users, Zap } from "lucide-react";
 import schoolImg from "../assets/school3.jpg.jpeg";
@@ -117,7 +117,7 @@ export default function Admissions() {
             <div className="absolute inset-0 bg-primary/80"></div>
           </div>
           <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-            <motion.div
+            <Motion
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -125,13 +125,13 @@ export default function Admissions() {
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-white mb-4">
                 Admissions
               </h1>
-            </motion.div>
+            </Motion>
           </div>
         </section>
 
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
+            <Motion
               initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -145,16 +145,16 @@ export default function Admissions() {
                 We welcome applications from students of all backgrounds who are
                 committed to academic excellence
               </p>
-            </motion.div>
+            </Motion>
 
-            <motion.div
+            <Motion
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               className="grid md:grid-cols-3 gap-8 mb-20"
             >
               {requirementsData.map((req, idx) => (
-                <motion.div
+                <Motion
                   key={idx}
                   variants={itemVariants}
                   whileHover={{ y: -5 }}
@@ -195,15 +195,15 @@ export default function Admissions() {
                   >
                     Apply Now
                   </Link>
-                </motion.div>
+                </Motion>
               ))}
-            </motion.div>
+            </Motion>
           </div>
         </section>
 
         <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
+            <Motion
               initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -216,16 +216,16 @@ export default function Admissions() {
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 A smooth and transparent journey from inquiry to enrollment
               </p>
-            </motion.div>
+            </Motion>
 
-            <motion.div
+            <Motion
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               className="grid md:grid-cols-3 gap-8 mb-16"
             >
               {processData.map((item, idx) => (
-                <motion.div
+                <Motion
                   key={idx}
                   variants={itemVariants}
                   whileHover={{ scale: 1.05 }}
@@ -236,27 +236,27 @@ export default function Admissions() {
                   )}
 
                   <div className="bg-[#374155] rounded-lg shadow-md hover:shadow-lg transition-shadow p-8 text-center h-full">
-                    <motion.div
+                    <Motion
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       className="w-14 h-14 rounded-full bg-[#f97316] text-white flex items-center justify-center font-bold text-xl mx-auto mb-4"
                     >
                       {item.step}
-                    </motion.div>
+                    </Motion>
 
                     <h3 className="text-xl font-serif font-bold text-white mb-2">
                       {item.title}
                     </h3>
                     <p className="text-gray-300 text-sm">{item.description}</p>
                   </div>
-                </motion.div>
+                </Motion>
               ))}
-            </motion.div>
+            </Motion>
           </div>
         </section>
 
         <section className="py-20 bg-white">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
+            <Motion
               initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -266,16 +266,16 @@ export default function Admissions() {
               <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1e3a8a] mb-4">
                 Important Dates 2026
               </h2>
-            </motion.div>
+            </Motion>
 
-            <motion.div
+            <Motion
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               className="grid md:grid-cols-2 gap-8"
             >
               {datesData.map((item, idx) => (
-                <motion.div
+                <Motion
                   key={idx}
                   variants={itemVariants}
                   className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start bg-[#374155] rounded-lg p-6"
@@ -287,14 +287,14 @@ export default function Admissions() {
                     </p>
                     <p className="text-gray-300">{item.event}</p>
                   </div>
-                </motion.div>
+                </Motion>
               ))}
-            </motion.div>
+            </Motion>
           </div>
         </section>
 
         <section className="py-12 bg-[#34d399]">
-          <motion.div
+          <Motion
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -329,19 +329,19 @@ export default function Admissions() {
                 {statsData.map((item, idx) => {
                   const Icon = item.icon;
                   return (
-                    <motion.div
+                    <Motion
                       key={idx}
                       whileHover={{ y: -5 }}
                       className="bg-gradient-to-br from-[#fbbf24] to-[#d97706] rounded-lg p-6 text-center shadow-md"
                     >
                       <Icon size={32} className="text-white mx-auto mb-2" />
                       <p className="text-white font-bold">{item.text}</p>
-                    </motion.div>
+                    </Motion>
                   );
                 })}
               </div>
             </div>
-          </motion.div>
+          </Motion>
         </section>
       </div>
     </div>

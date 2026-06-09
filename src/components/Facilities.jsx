@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import Motion from "./Motion";
 import {
   Microscope,
   Library,
@@ -84,7 +84,7 @@ export default function Facilities() {
     <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <motion.div
+        <Motion
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -94,10 +94,10 @@ export default function Facilities() {
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#1e3a8a] mb-4">
             Our Facilities
           </h2>
-        </motion.div>
+        </Motion>
 
         {/* Facilities Grid */}
-        <motion.div
+        <Motion
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -107,7 +107,7 @@ export default function Facilities() {
           {facilities.map((facility) => {
             const Icon = facility.icon;
             return (
-              <motion.div
+              <Motion
                 key={facility.id}
                 variants={itemVariants}
                 whileHover={{ y: -8 }}
@@ -131,12 +131,12 @@ export default function Facilities() {
 
                 <div className="p-6">
                   {/* Icon */}
-                  <motion.div
+                  <Motion
                     whileHover={{ scale: 1.1 }}
                     className="mb-4 inline-block p-3 rounded-lg bg-[#f97316]/10"
                   >
                     <Icon size={28} className="text-[#f97316]" />
-                  </motion.div>
+                  </Motion>
 
                   {/* Title */}
                   <h3 className="text-xl font-serif font-bold text-[#1e3a8a] mb-3">
@@ -148,13 +148,13 @@ export default function Facilities() {
                     {facility.description}
                   </p>
                 </div>
-              </motion.div>
+              </Motion>
             );
           })}
-        </motion.div>
+        </Motion>
 
         {/* Virtual Tour CTA */}
-        <motion.div
+        <Motion
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -167,7 +167,7 @@ export default function Facilities() {
           >
             Take Virtual Tour
           </a>
-        </motion.div>
+        </Motion>
       </div>
     </section>
   );

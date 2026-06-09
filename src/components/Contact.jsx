@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, MessageCircle, CheckCircle } from "lucide-react";
-import { supabase } from "../supabaseClient";
+import { getSupabase } from "../supabaseClient";
 import schoolImg from '../assets/school.jpg.jpeg';
 
 const PAGE_LOAD = Date.now()
@@ -38,7 +38,7 @@ export default function Contact() {
     setError('')
 
     try {
-      const { error: insertError } = await supabase
+      const { error: insertError } = await getSupabase()
         .from('contact_messages')
         .insert([{
           name: formData.name,

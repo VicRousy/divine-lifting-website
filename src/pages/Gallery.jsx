@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { motion } from 'framer-motion'
+import Motion from '../components/Motion'
 import { Camera } from 'lucide-react'
 import schoolImg from '../assets/school.jpg.jpeg'
 
@@ -37,17 +37,17 @@ export default function Gallery() {
           <div className="absolute inset-0 bg-primary/80"></div>
         </div>
         <div className="relative z-10 px-4">
-          <motion.h1 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">
+          <Motion as="h1" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">
             Our Gallery
-          </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-lg text-gray-300 max-w-xl mx-auto">
+          </Motion>
+          <Motion as="p" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-lg text-gray-300 max-w-xl mx-auto">
             A glimpse into life at Divine Lifting International School
-          </motion.p>
+          </Motion>
         </div>
       </section>
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10 pb-20">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 mb-10 overflow-x-auto">
+        <Motion initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 mb-10 overflow-x-auto">
           <div className="flex gap-3 min-w-max">
             {CATEGORIES.map(cat => (
               <button
@@ -59,11 +59,11 @@ export default function Gallery() {
               </button>
             ))}
           </div>
-        </motion.div>
+        </Motion>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((item, idx) => (
-            <motion.div
+            <Motion
               key={item.id}
               layout
               initial={{ opacity: 0, scale: 0.9 }}
@@ -83,7 +83,7 @@ export default function Gallery() {
                 <h3 className="font-bold text-primary">{item.title}</h3>
                 <p className="text-gray-400 text-xs mt-1">Click to view full image</p>
               </div>
-            </motion.div>
+            </Motion>
           ))}
         </div>
 
