@@ -73,7 +73,7 @@ export default function News() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" style={{ minHeight: '400px' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map(cat => (
@@ -90,6 +90,8 @@ export default function News() {
             </button>
           ))}
         </div>
+
+        <div style={{ minHeight: '800px' }}>
 
         {loading && (
           <div className="flex flex-col items-center justify-center py-20 text-gray-400">
@@ -209,6 +211,7 @@ export default function News() {
             </div>
           </>
         )}
+        </div>
       </div>
     </div>
   )

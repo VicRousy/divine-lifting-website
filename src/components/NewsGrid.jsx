@@ -32,9 +32,10 @@ export default function NewsGrid() {
   }, [])
 
   return (
-    <section className="py-20 bg-white" style={{ minHeight: '400px' }}>
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-serif font-bold text-center text-primary mb-16">Latest News & Events</h2>
+        <div style={{ minHeight: '450px' }}>
 
         {loading && (
           <div className="flex flex-col items-center justify-center py-12 text-gray-400">
@@ -88,6 +89,7 @@ export default function NewsGrid() {
             ))}
           </div>
         )}
+        </div>
       </div>
     </section>
   )

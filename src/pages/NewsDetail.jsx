@@ -73,6 +73,8 @@ export default function NewsDetail() {
           <ArrowLeft size={20} /> Back to News
         </Link>
 
+        <div style={{ minHeight: '700px' }}>
+
         {loading && (
           <div className="flex flex-col items-center justify-center py-20 text-gray-400">
             <RefreshCw size={32} className="animate-spin mb-4" />
@@ -139,6 +141,7 @@ export default function NewsDetail() {
             </div>
           </motion.article>
         )}
+        </div>
       </div>
     </div>
   )
