@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { schoolConfig } from '../data/config'
@@ -8,12 +8,46 @@ import logoWebp from '../assets/logo.webp'
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const menuRef = useRef(null)
+  const toggleRef = useRef(null)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const handleKeyDown = useCallback((e) => {
+    if (!isOpen) return
+    const focusable = menuRef.current?.querySelectorAll('a, button')
+    if (!focusable?.length) return
+    const first = focusable[0]
+    const last = focusable[focusable.length - 1]
+    if (e.key === 'Tab') {
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
+    if (e.key === 'Escape') {
+      setIsOpen(false)
+      toggleRef.current?.focus()
+    }
+  }, [isOpen])
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener('keydown', handleKeyDown)
+      const firstLink = menuRef.current?.querySelector('a')
+      firstLink?.focus()
+    } else {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [isOpen, handleKeyDown])
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -73,14 +107,14 @@ export default function Navbar() {
           </div>
 
           <div className="lg:hidden">
-            <button type="button" aria-label="Toggle menu" onClick={() => setIsOpen(!isOpen)} className={`p-2 ${scrolled ? 'text-primary' : 'text-white'}`}>
+            <button type="button" ref={toggleRef} aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={isOpen} aria-controls="mobile-menu" onClick={() => setIsOpen(!isOpen)} className={`p-2 ${scrolled ? 'text-primary' : 'text-white'}`}>
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
       </div>
 
-      <div className={`lg:hidden transition-all duration-300 ease-out overflow-hidden ${isOpen ? 'max-h-[calc(100vh-76px)] opacity-100' : 'max-h-0 opacity-0'}`}>
+      <div id="mobile-menu" ref={menuRef} role="navigation" aria-label="Mobile navigation" className={`lg:hidden transition-all duration-300 ease-out overflow-hidden ${isOpen ? 'max-h-[calc(100vh-76px)] opacity-100' : 'max-h-0 opacity-0 invisible'}`}>
         <div className="absolute top-full left-0 right-0 bg-white shadow-xl border-t border-gray-100 overflow-y-auto">
           <div className="px-4 py-6 space-y-4">
             {navLinks.map((link) => (
