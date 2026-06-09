@@ -17,10 +17,18 @@ export default async function handler(req, res) {
     return res.status(403).json({ error: 'Forbidden' })
   }
 
-  const { name, email, phone, program, message } = req.body;
+  const { name, email, phone, program, message, _honeypot, _t } = req.body;
 
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  if (_honeypot) {
+    return res.status(400).json({ error: 'Spam detected' })
+  }
+
+  if (_t && (Date.now() - _t < 2000 || Date.now() - _t > 14400000)) {
+    return res.status(400).json({ error: 'Invalid request' })
   }
 
   if (name.length > 100 || email.length > 200 || message.length > 5000 || (phone && phone.length > 30)) {

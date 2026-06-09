@@ -17,10 +17,18 @@ export default async function handler(req, res) {
     return res.status(403).json({ error: 'Forbidden' })
   }
 
-  const { student_first_name, student_last_name, class_applying_for, application_number, father_name, mother_name, father_email, mother_email } = req.body;
+  const { student_first_name, student_last_name, class_applying_for, application_number, father_name, mother_name, father_email, mother_email, _honeypot, _t } = req.body;
 
   if (!student_first_name || !student_last_name || !application_number) {
     return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  if (_honeypot) {
+    return res.status(400).json({ error: 'Spam detected' })
+  }
+
+  if (_t && (Date.now() - _t < 2000 || Date.now() - _t > 14400000)) {
+    return res.status(400).json({ error: 'Invalid request' })
   }
 
   if (student_first_name.length > 50 || student_last_name.length > 50 || application_number.length > 30) {

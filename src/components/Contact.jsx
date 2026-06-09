@@ -4,13 +4,17 @@ import { Mail, Phone, MapPin, Send, MessageCircle, CheckCircle } from "lucide-re
 import { supabase } from "../supabaseClient";
 import schoolImg from '../assets/school.jpg.jpeg';
 
+const PAGE_LOAD = Date.now()
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     program: '',
-    message: ''
+    message: '',
+    _honeypot: '',
+    _t: PAGE_LOAD,
   })
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -29,6 +33,8 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (formData._honeypot) return
+
     setSubmitting(true)
     setError('')
 
@@ -105,6 +111,9 @@ export default function Contact() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
+              <div style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true">
+                <input type="text" name="_honeypot" value={formData._honeypot} onChange={handleChange} tabIndex={-1} autoComplete="off" />
+              </div>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-bold text-[#1f2937] mb-2">Full Name *</label>

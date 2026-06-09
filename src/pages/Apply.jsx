@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 import { supabase } from '../supabaseClient'
 import schoolImg from '../assets/school3.jpg.jpeg'
 
+const PAGE_LOAD = Date.now()
+
 export default function Apply() {
   const [formData, setFormData] = useState({
     student_first_name: '',
@@ -26,6 +28,8 @@ export default function Apply() {
     medical_notes: '',
     how_heard: '',
     siblings_enrolled: false,
+    _honeypot: '',
+    _t: PAGE_LOAD,
   })
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -39,6 +43,8 @@ export default function Apply() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (formData._honeypot) return
+
     setSubmitting(true)
     setError('')
 
@@ -122,6 +128,9 @@ export default function Apply() {
           </motion.div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-8">
+            <div style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true">
+              <input type="text" name="_honeypot" value={formData._honeypot} onChange={handleChange} tabIndex={-1} autoComplete="off" />
+            </div>
             <div className={sectionClass}>
               <h3 className="text-xl font-serif font-bold text-primary mb-6 pb-4 border-b border-gray-100">Student Information</h3>
               <div className="grid md:grid-cols-2 gap-6">
