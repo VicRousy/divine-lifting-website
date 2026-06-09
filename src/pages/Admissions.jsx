@@ -103,7 +103,7 @@ export default function Admissions() {
       <div className="bg-white">
         <section className="relative h-96 flex items-center justify-center overflow-hidden pt-20">
           <div className="absolute inset-0 z-0">
-            <img src={schoolImg} alt="School Campus" fetchpriority="high" className="w-full h-full object-cover" />
+            <img src={schoolImg} alt="School Campus" fetchpriority="high" className="w-full h-full object-cover" srcSet="/images/admissions-hero-640.jpg 640w, /images/admissions-hero.jpg 768w" sizes="100vw" />
             <div className="absolute inset-0 bg-primary/80"></div>
           </div>
           <div className="relative z-10 text-center max-w-4xl mx-auto px-4 animate-fadeInUp">

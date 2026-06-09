@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://divine-lifting-website.vercel.app/sitemap.xml

@@ -19,6 +19,7 @@ const Staff = lazy(() => import('./pages/Staff'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 function App() {
+  const siteUrl = typeof window !== 'undefined' ? window.location.origin : ''
   return (
     <HelmetProvider>
       <Router>
@@ -27,6 +28,9 @@ function App() {
             <meta name="description" content="Divine Lifting International School — providing quality education with a focus on academic excellence, character development, and holistic growth." />
             <meta property="og:type" content="website" />
             <meta property="og:site_name" content="Divine Lifting International School" />
+            <meta property="og:image" content={`${siteUrl}/images/default-hero.jpg`} />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
           </Helmet>
           <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-primary focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg">
             Skip to main content

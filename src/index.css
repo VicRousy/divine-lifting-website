@@ -28,6 +28,11 @@
   img[loading] {
     aspect-ratio: 16 / 9;
   }
+  *:focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
     color: var(--color-primary);

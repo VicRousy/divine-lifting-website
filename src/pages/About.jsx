@@ -25,7 +25,7 @@ export default function About() {
       <section className="relative py-32 flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <picture>
-            <img src={schoolImg} alt="School Campus" className="w-full h-full object-cover" />
+            <img src={schoolImg} alt="School Campus" className="w-full h-full object-cover" srcSet="/images/default-hero-640.jpg 640w, /images/default-hero.jpg 1020w" sizes="100vw" />
           </picture>
           <div className="absolute inset-0 bg-primary/80"></div>
         </div>
