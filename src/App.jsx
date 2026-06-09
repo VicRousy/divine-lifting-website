@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react'
 import { HelmetProvider, Helmet } from 'react-helmet-async'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import ErrorBoundary from './components/ErrorBoundary'
 
 const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
@@ -27,8 +28,12 @@ function App() {
             <meta property="og:type" content="website" />
             <meta property="og:site_name" content="Divine Lifting International School" />
           </Helmet>
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-primary focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg">
+            Skip to main content
+          </a>
           <Navbar />
-          <main className="flex-grow">
+          <main id="main-content" className="flex-grow">
+            <ErrorBoundary>
             <Suspense fallback={<div className="min-h-[50vh] pt-28 text-center text-primary font-semibold">Loading...</div>}>
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -45,6 +50,7 @@ function App() {
               <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
+            </ErrorBoundary>
           </main>
           <Footer />
         </div>
