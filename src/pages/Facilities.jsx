@@ -1,5 +1,4 @@
 import { Helmet } from "react-helmet-async";
-import Motion from "../components/Motion";
 import Facilities from "../components/Facilities";
 import schoolImg from "../assets/school.jpg.jpeg";
 
@@ -16,7 +15,7 @@ export default function FacilitiesPage() {
         "Safety protocols",
       ],
       image: "placeholder",
-      bgColor: "#10b981", // Emerald Green for Science
+      bgColor: "#047857", // Emerald for Science
     },
     {
       name: "Computer Lab",
@@ -29,7 +28,7 @@ export default function FacilitiesPage() {
         "Coding platforms",
       ],
       image: "placeholder",
-      bgColor: "#3b82f6", // Blue for Technology
+      bgColor: "#1d4ed8", // Blue for Technology
     },
     {
       name: "Library & Resource Center",
@@ -55,7 +54,7 @@ export default function FacilitiesPage() {
         "Projector setup",
       ],
       image: "placeholder",
-      bgColor: "#f97316", // Orange for Gathering/Energy
+      bgColor: "#c2410c", // Orange for Gathering/Energy
     },
   ];
 
@@ -67,51 +66,32 @@ export default function FacilitiesPage() {
       </Helmet>
       <section className="relative h-96 flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
-          <img src={schoolImg} alt="School Campus" className="w-full h-full object-cover" />
+          <img src={schoolImg} alt="School Campus" fetchpriority="high" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-primary/80"></div>
         </div>
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-          <Motion
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <div className="animate-fadeInUp">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-white mb-4">
               Our Facilities
             </h1>
-          </Motion>
+          </div>
         </div>
       </section>
 
       {/* Detailed Facilities */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Motion
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1e3a8a] mb-4">
               Facility Details
             </h2>
-          </Motion>
+          </div>
 
-          <Motion
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="space-y-12"
-          >
+          <div className="space-y-12">
             {detailedFacilities.map((facility, idx) => (
-              <Motion
+              <div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                viewport={{ once: true }}
-                className={`flex flex-col lg:flex-row gap-8 items-stretch lg:items-center ${idx % 2 === 1 ? "lg:flex-row-reverse" : ""}`}
+                className={`flex flex-col lg:flex-row gap-8 items-stretch lg:items-center ${idx % 2 === 1 ? "lg:flex-row-reverse" : ""} hover:-translate-y-1 transition-transform duration-300`}
               >
                 {/* Image */}
                 <div className="flex-1 rounded-lg overflow-hidden shadow-lg bg-gray-200 h-64 sm:h-80 flex items-center justify-center text-gray-400">
@@ -133,7 +113,7 @@ export default function FacilitiesPage() {
                   <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-3">
                     {facility.name}
                   </h3>
-                  <p className="text-white/90 text-lg leading-relaxed mb-6">
+                  <p className="text-white text-lg leading-relaxed mb-6">
                     {facility.description}
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -142,30 +122,24 @@ export default function FacilitiesPage() {
                         <span className="text-[#fde047] font-bold text-lg">
                           ✓
                         </span>
-                        <span className="text-white/90">{feature}</span>
+                        <span className="text-white">{feature}</span>
                       </div>
                     ))}
                   </div>
                 </div>
-              </Motion>
+              </div>
             ))}
-          </Motion>
+          </div>
         </div>
       </section>
 
       {/* Virtual Tour CTA */}
       <section className="py-16 bg-[#1e3a8a]">
-        <Motion
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
-        >
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white mb-4">
             Explore Our Campus Virtually
           </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
             Take a 360° virtual tour of our facilities from the comfort of your
             home
           </p>
@@ -175,7 +149,7 @@ export default function FacilitiesPage() {
           >
             Start Virtual Tour
           </a>
-        </Motion>
+        </div>
       </section>
     </div>
   );

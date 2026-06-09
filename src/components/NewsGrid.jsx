@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Motion from './Motion'
 import { Calendar, ArrowRight, RefreshCw, Newspaper } from 'lucide-react'
 import { getSupabase } from '../supabaseClient'
 
@@ -67,10 +66,8 @@ export default function NewsGrid() {
         {!loading && !error && news.length > 0 && (
           <div className="grid md:grid-cols-3 gap-8">
             {news.map((item) => (
-              <Motion 
+              <div 
                 key={item.id} 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
                 className="group bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all"
               >
                 {item.image_url ? (
@@ -93,7 +90,7 @@ export default function NewsGrid() {
                   Read More <ArrowRight size={18} />
                 </Link>
                 </div>
-              </Motion>
+              </div>
             ))}
           </div>
         )}

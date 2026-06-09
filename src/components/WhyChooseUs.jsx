@@ -1,4 +1,3 @@
-import Motion from './Motion'
 import { Link } from 'react-router-dom'
 import { BookOpen, Heart, Building2, ArrowRight } from 'lucide-react'
 
@@ -34,13 +33,8 @@ export default function WhyChooseUs() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <Motion
+            <div
               key={feature.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              whileHover={{ y: -8 }}
               className="bg-sky-100 p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-sky-200"
             >
               <div className={`w-14 h-14 rounded-xl bg-white flex items-center justify-center mb-6`}>
@@ -51,7 +45,7 @@ export default function WhyChooseUs() {
               <Link to="/about" className="inline-flex items-center gap-2 text-secondary font-bold hover:gap-3 transition-all">
                 Learn More <ArrowRight size={18} />
               </Link>
-            </Motion>
+            </div>
           ))}
         </div>
       </div>

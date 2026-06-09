@@ -1,4 +1,3 @@
-import Motion from './Motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import nurseryImg from '../assets/nursery and pre-school.jpg'
@@ -43,12 +42,8 @@ export default function Programs() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {programs.map((program, index) => (
-            <Motion
+            <div
               key={program.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
               className="group bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300"
             >
               <div className="relative h-64 overflow-hidden">
@@ -67,7 +62,7 @@ export default function Programs() {
                   View Details <ArrowRight size={18} />
                 </Link>
               </div>
-            </Motion>
+            </div>
           ))}
         </div>
       </div>

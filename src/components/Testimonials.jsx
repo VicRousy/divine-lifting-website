@@ -1,4 +1,3 @@
-import Motion from './Motion'
 import { Quote } from 'lucide-react'
 
 const testimonials = [
@@ -27,12 +26,8 @@ export default function Testimonials() {
         
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((t, i) => (
-            <Motion
+            <div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2 }}
               className="bg-primary p-8 rounded-2xl shadow-lg relative border border-gray-700"
             >
               <Quote className="text-secondary/30 w-16 h-16 absolute top-4 left-4" />
@@ -41,7 +36,7 @@ export default function Testimonials() {
                 <h4 className="font-bold text-white text-lg">{t.name}</h4>
                 <p className="text-secondary font-medium">{t.child}</p>
               </div>
-            </Motion>
+            </div>
           ))}
         </div>
       </div>

@@ -1,4 +1,3 @@
-import Motion from './Motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 
@@ -6,13 +5,11 @@ export default function FinalCTA() {
   return (
     <section className="py-24 bg-primary text-center">
       <div className="max-w-4xl mx-auto px-4">
-        <Motion as="h2" 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+        <h2 
           className="text-4xl md:text-5xl font-serif font-bold text-secondary mb-6"
         >
           Enroll Your Child for 2026/2027 Academic Session
-        </Motion>
+        </h2>
         <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
           Limited spaces available. Apply now to secure your child's future in our world-class educational environment.
         </p>
