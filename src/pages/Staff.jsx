@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async'
-import Motion from '../components/Motion'
 import { Users, Mail, BookOpen } from 'lucide-react'
 import schoolImg from '../assets/school.jpg.jpeg'
 
@@ -32,17 +31,17 @@ export default function Staff() {
           <div className="absolute inset-0 bg-primary/80"></div>
         </div>
         <div className="relative z-10 px-4">
-          <Motion as="h1" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4 animate-fadeInUp">
             Staff Directory
-          </Motion>
-          <Motion as="p" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-lg text-gray-300 max-w-2xl mx-auto">
+          </h1>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto animate-fadeInUp">
             Meet our dedicated team of educators and administrators
-          </Motion>
+          </p>
         </div>
       </section>
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10 pb-20">
-        <Motion initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-white rounded-2xl shadow-lg p-6 mb-10 text-center">
+        <div className="bg-white rounded-2xl shadow-lg p-6 mb-10 text-center">
           <div className="flex items-center justify-center gap-3 text-primary mb-2">
             <Users size={28} />
             <h2 className="text-2xl font-serif font-bold">Our Faculty & Staff</h2>
@@ -50,15 +49,12 @@ export default function Staff() {
           <p className="text-gray-500 max-w-2xl mx-auto">
             Our team is composed of qualified, experienced, and caring professionals dedicated to nurturing academic excellence and character development.
           </p>
-        </Motion>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {STAFF.map((person, idx) => (
-            <Motion
+            <div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.05 }}
               className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-6 text-center group"
             >
               <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-secondary/10 transition-colors">
@@ -78,7 +74,7 @@ export default function Staff() {
                   <span>{person.email}</span>
                 </a>
               )}
-            </Motion>
+            </div>
           ))}
         </div>
       </section>

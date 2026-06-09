@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
-import Motion from '../components/Motion'
 import { CheckCircle, Send, ArrowLeft } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { getSupabase } from '../supabaseClient'
@@ -98,12 +97,12 @@ export default function Apply() {
           <div className="absolute inset-0 bg-primary/80"></div>
         </div>
         <div className="relative z-10 px-4">
-          <Motion as="h1" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4 animate-fadeInUp">
             Apply for Admission
-          </Motion>
-          <Motion as="p" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-lg text-gray-300 max-w-xl mx-auto">
+          </h1>
+          <p className="text-lg text-gray-300 max-w-xl mx-auto animate-fadeInUp">
             Complete the form below to begin your child's journey at Divine Lifting International School
-          </Motion>
+          </p>
         </div>
       </section>
 
@@ -113,7 +112,7 @@ export default function Apply() {
         </Link>
 
         {submitted ? (
-          <Motion initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="bg-white rounded-3xl shadow-lg p-8 md:p-16 text-center border border-gray-100">
+          <div className="bg-white rounded-3xl shadow-lg p-8 md:p-16 text-center border border-gray-100">
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <CheckCircle size={48} className="text-green-600" />
             </div>
@@ -125,7 +124,7 @@ export default function Apply() {
               <Link to="/" className="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:bg-primary/90 transition-colors">Back to Home</Link>
               <Link to="/admissions" className="bg-secondary text-white px-8 py-3 rounded-lg font-bold hover:bg-secondary/90 transition-colors">Admissions Info</Link>
             </div>
-          </Motion>
+          </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-8">
             <div style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true">

@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import Motion from '../components/Motion'
 import { Calendar, ArrowLeft, Newspaper, RefreshCw } from 'lucide-react'
 import { getSupabase } from '../supabaseClient'
 import schoolImg from '../assets/school.jpg.jpeg'
@@ -47,21 +46,16 @@ export default function NewsDetail() {
           <div className="absolute inset-0 bg-primary/80"></div>
         </div>
         <div className="relative z-10 px-4">
-          <Motion as="h1"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-serif font-bold text-white mb-4"
+          <h1
+            className="text-4xl md:text-5xl font-serif font-bold text-white mb-4 animate-fadeInUp"
           >
             News & Events
-          </Motion>
-          <Motion as="p"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-lg text-gray-300"
+          </h1>
+          <p
+            className="text-lg text-gray-300 animate-fadeInUp"
           >
             Stay updated with the latest happenings
-          </Motion>
+          </p>
         </div>
       </section>
 
@@ -114,10 +108,8 @@ export default function NewsDetail() {
         )}
 
         {!loading && !error && article && (
-          <Motion as="article"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="bg-gray-50 rounded-3xl overflow-hidden shadow-lg border border-gray-100"
+          <article
+            className="bg-gray-50 rounded-3xl overflow-hidden shadow-lg border border-gray-100 animate-fadeInUp"
           >
             {article.image_url ? (
               <div className="h-72 md:h-96 overflow-hidden" style={{ aspectRatio: '16/9' }}>
@@ -150,7 +142,7 @@ export default function NewsDetail() {
                 <p>{article.excerpt}</p>
               </div>
             </div>
-          </Motion>
+          </article>
         )}
         </div>
       </div>

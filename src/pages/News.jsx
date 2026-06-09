@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Motion from '../components/Motion'
 import { Calendar, RefreshCw, Newspaper, ChevronRight } from 'lucide-react'
 import { getSupabase } from '../supabaseClient'
 import schoolImg from '../assets/school.jpg.jpeg'
@@ -55,21 +54,16 @@ export default function News() {
           <div className="absolute inset-0 bg-primary/80"></div>
         </div>
         <div className="relative z-10 px-4">
-          <Motion as="h1"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-serif font-bold text-white mb-4"
+          <h1
+            className="text-4xl md:text-5xl font-serif font-bold text-white mb-4 animate-fadeInUp"
           >
             News & Events
-          </Motion>
-          <Motion as="p"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-lg text-gray-300 max-w-xl mx-auto"
+          </h1>
+          <p
+            className="text-lg text-gray-300 max-w-xl mx-auto animate-fadeInUp"
           >
             Stay updated with the latest happenings at Divine Lifting International School
-          </Motion>
+          </p>
         </div>
       </section>
 
@@ -143,9 +137,7 @@ export default function News() {
             {/* Featured Article */}
             {featured && (
               <Link to={`/news/${featured.id}`}>
-                <Motion
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                <div
                   className="bg-gray-50 rounded-3xl overflow-hidden shadow-lg mb-12 group hover:shadow-xl transition-all border border-gray-100"
                 >
                   <div className="grid md:grid-cols-2 gap-0">
@@ -182,7 +174,7 @@ export default function News() {
                       </div>
                     </div>
                   </div>
-                </Motion>
+                </div>
               </Link>
             )}
 
@@ -190,10 +182,7 @@ export default function News() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {rest.map((item, index) => (
                 <Link key={item.id} to={`/news/${item.id}`}>
-                  <Motion
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
+                  <div
                     className="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all group border border-gray-100"
                   >
                     {item.image_url ? (
@@ -226,7 +215,7 @@ export default function News() {
                         Read More <ChevronRight size={16} />
                       </span>
                     </div>
-                  </Motion>
+                  </div>
                 </Link>
               ))}
             </div>

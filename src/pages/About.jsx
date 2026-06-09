@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async'
-import Motion from '../components/Motion'
 import { BookOpen, Heart, Shield, Target, Users, Zap } from 'lucide-react'
 import { schoolConfig } from '../data/config'
 import proprietressImg from '../assets/proprietress.jpg.jpeg'
@@ -41,18 +40,18 @@ export default function About() {
       {/* Mission & Vision */}
       <section className="py-20 bg-cream-50">
         <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
-          <Motion initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} className="bg-[#fde047] p-10 rounded-2xl shadow-lg">
+          <div className="bg-[#fde047] p-10 rounded-2xl shadow-lg">
             <h2 className="text-2xl font-bold mb-6 text-primary">Mission Statement</h2>
             <p className="text-gray-900 leading-relaxed text-lg">"To raise godly leaders with academic excellence, strong character, and practical skills to impact their generation."</p>
-          </Motion>
-          <Motion initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} className="bg-[#fde047] p-10 rounded-2xl shadow-lg">
+          </div>
+          <div className="bg-[#fde047] p-10 rounded-2xl shadow-lg">
             <h2 className="text-2xl font-bold mb-6 text-primary">Vision Statement</h2>
             <p className="text-gray-900 leading-relaxed text-lg">"To be the leading school of choice in Ikorodu and Lagos State, known for producing well-rounded students who excel academically and demonstrate exemplary character."</p>
-          </Motion>
-          <Motion initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} className="bg-[#fde047] p-10 rounded-2xl shadow-lg">
+          </div>
+          <div className="bg-[#fde047] p-10 rounded-2xl shadow-lg">
             <h2 className="text-2xl font-bold mb-6 text-primary">Goal Statement</h2>
             <p className="text-gray-900 leading-relaxed text-lg">"To provide a holistic education that nurtures academic excellence, moral integrity, and practical skills, preparing students to become responsible global citizens."</p>
-          </Motion>
+          </div>
         </div>
       </section>
 
@@ -117,11 +116,11 @@ export default function About() {
           <h2 className="text-3xl font-bold text-center mb-16 text-primary">Our Core Values</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {values.map((v, i) => (
-              <Motion key={v.title} whileHover={{ y: -5 }} className="p-8 rounded-xl shadow-md text-center border border-gray-200" style={{ backgroundColor: v.color }}>
+              <div key={v.title} className="p-8 rounded-xl shadow-md text-center border border-gray-200" style={{ backgroundColor: v.color }}>
                 <v.icon size={40} className="mx-auto mb-4 text-white" />
                 <h3 className="text-xl font-bold mb-2 text-white">{v.title}</h3>
                 <p className="text-white/90">{v.desc}</p>
-              </Motion>
+              </div>
             ))}
           </div>
         </div>
