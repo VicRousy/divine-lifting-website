@@ -6,15 +6,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-[620px] h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=1200&q=75')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
+      <div className="absolute inset-0 z-0 hero-bg">
         {/* Sophisticated Gradient Overlay Mask */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#1e3a8a]/60 to-[#0f172a]/80"></div>
       </div>
@@ -65,15 +57,13 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div 
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-      >
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
-          <div className="w-1 h-2 bg-white/50 rounded-full"></div>
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50">
+        <div className="scroll-indicator">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
+            <div className="w-1 h-2 bg-white/50 rounded-full animate-scroll"></div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }
