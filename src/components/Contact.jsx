@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, MessageCircle, CheckCircle } from "lucide-react";
 import { supabase } from "../supabaseClient";
 import schoolImg from '../assets/school.jpg.jpeg';

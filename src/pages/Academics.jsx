@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { BookOpen, GraduationCap, Users, Target, BarChart3, Clock } from 'lucide-react'
+import { BookOpen, Users, Clock } from 'lucide-react'
 import { schoolConfig } from '../data/config'
 import schoolImg from '../assets/school2.jpg.jpeg'
 

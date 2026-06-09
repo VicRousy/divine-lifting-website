@@ -77,7 +77,7 @@ export default function NewsGrid() {
                   <span className="text-secondary text-xs font-bold uppercase tracking-wider">{item.category}</span>
                   <h3 className="text-xl font-bold text-primary mt-2 mb-3">{item.title}</h3>
                   <div className="flex items-center text-gray-500 text-sm mb-4">
-                    <Calendar size={14} className="mr-2" /> {new Date(item.published_date).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}
+                    <Calendar size={14} className="mr-2" />                     {item.published_date ? new Date(item.published_date).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) : 'Date TBD'}
                   </div>
                   <p className="text-gray-600 mb-4">{item.excerpt}</p>
                 <Link to={`/news/${item.id}`} className="inline-flex items-center gap-2 text-secondary font-bold hover:gap-3 transition-all">

@@ -7,6 +7,10 @@ const ALLOWED = [
   'http://localhost:3001',
 ]
 
+function esc(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;')
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -57,12 +61,12 @@ export default async function handler(req, res) {
             <p style="color: #9ca3af; margin: 8px 0 0;">New Contact Form Submission</p>
           </div>
           <div style="background: #f9fafb; padding: 24px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 12px 12px;">
-            <table style="width: 100%; border-collapse: collapse;">
-              <tr><td style="padding: 8px 0; color: #6b7280; font-weight: bold; width: 120px;">Name:</td><td style="padding: 8px 0; color: #1f2937;">${name}</td></tr>
-              <tr><td style="padding: 8px 0; color: #6b7280; font-weight: bold;">Email:</td><td style="padding: 8px 0; color: #1f2937;">${email}</td></tr>
-              ${phone ? `<tr><td style="padding: 8px 0; color: #6b7280; font-weight: bold;">Phone:</td><td style="padding: 8px 0; color: #1f2937;">${phone}</td></tr>` : ''}
-              <tr><td style="padding: 8px 0; color: #6b7280; font-weight: bold;">Program:</td><td style="padding: 8px 0; color: #1f2937;">${programLabel}</td></tr>
-              <tr><td style="padding: 8px 0; color: #6b7280; font-weight: bold;">Message:</td><td style="padding: 8px 0; color: #1f2937;">${message}</td></tr>
+              <table style="width: 100%; border-collapse: collapse;">
+              <tr><td style="padding: 8px 0; color: #6b7280; font-weight: bold; width: 120px;">Name:</td><td style="padding: 8px 0; color: #1f2937;">${esc(name)}</td></tr>
+              <tr><td style="padding: 8px 0; color: #6b7280; font-weight: bold;">Email:</td><td style="padding: 8px 0; color: #1f2937;">${esc(email)}</td></tr>
+              ${phone ? `<tr><td style="padding: 8px 0; color: #6b7280; font-weight: bold;">Phone:</td><td style="padding: 8px 0; color: #1f2937;">${esc(phone)}</td></tr>` : ''}
+              <tr><td style="padding: 8px 0; color: #6b7280; font-weight: bold;">Program:</td><td style="padding: 8px 0; color: #1f2937;">${esc(programLabel)}</td></tr>
+              <tr><td style="padding: 8px 0; color: #6b7280; font-weight: bold;">Message:</td><td style="padding: 8px 0; color: #1f2937;">${esc(message)}</td></tr>
             </table>
             <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #e5e7eb; text-align: center;">
               <a href="${process.env.PORTAL_URL || 'https://divine-lifting-school.vercel.app'}" style="background: #f97316; color: white; padding: 10px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">View in Portal</a>

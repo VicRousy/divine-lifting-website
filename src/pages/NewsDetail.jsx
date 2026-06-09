@@ -126,7 +126,7 @@ export default function NewsDetail() {
                 </span>
                 <span className="flex items-center gap-2 text-sm text-gray-500">
                   <Calendar size={16} className="text-secondary" />
-                  {new Date(article.published_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+                                    {article.published_date ? new Date(article.published_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Date TBD'}
                 </span>
               </div>
               <h1 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 leading-tight">

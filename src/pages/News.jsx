@@ -152,7 +152,7 @@ export default function News() {
                         <div className="flex items-center gap-4 pt-4 border-t border-gray-200">
                           <span className="flex items-center gap-2 text-sm text-gray-500">
                             <Calendar size={16} className="text-secondary" />
-                            {new Date(featured.published_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+                                                        {featured.published_date ? new Date(featured.published_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Date TBD'}
                           </span>
                         </div>
                       </div>
@@ -192,7 +192,7 @@ export default function News() {
                         </span>
                         <span className="flex items-center gap-1 text-xs text-gray-500">
                           <Calendar size={14} className="text-secondary/70" />
-                          {new Date(item.published_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                                                    {item.published_date ? new Date(item.published_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : 'Date TBD'}
                         </span>
                       </div>
                       <h3 className="text-xl font-bold text-primary mb-3 leading-snug">{item.title}</h3>
