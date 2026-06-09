@@ -38,9 +38,17 @@ export default function NewsGrid() {
         <div style={{ minHeight: '450px' }}>
 
         {loading && (
-          <div className="flex flex-col items-center justify-center py-12 text-gray-400">
-            <RefreshCw size={32} className="animate-spin mb-4" />
-            <p>Loading news...</p>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[1,2,3].map(i => (
+              <div key={i} className="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 animate-pulse">
+                <div className="h-48 bg-gray-200" />
+                <div className="p-6 space-y-3">
+                  <div className="h-3 bg-gray-200 rounded w-1/4" />
+                  <div className="h-5 bg-gray-200 rounded w-3/4" />
+                  <div className="h-3 bg-gray-200 rounded w-1/2" />
+                </div>
+              </div>
+            ))}
           </div>
         )}
 

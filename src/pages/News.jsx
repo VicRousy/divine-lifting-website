@@ -94,9 +94,30 @@ export default function News() {
         <div style={{ minHeight: '800px' }}>
 
         {loading && (
-          <div className="flex flex-col items-center justify-center py-20 text-gray-400">
-            <RefreshCw size={32} className="animate-spin mb-4" />
-            <p>Loading news...</p>
+          <div className="animate-pulse space-y-12">
+            <div className="bg-gray-50 rounded-3xl overflow-hidden shadow-lg border border-gray-100">
+              <div className="grid md:grid-cols-2 gap-0">
+                <div className="h-64 md:h-96 bg-gray-200" />
+                <div className="p-8 md:p-12 space-y-4">
+                  <div className="h-3 bg-gray-200 rounded w-1/4" />
+                  <div className="h-6 bg-gray-200 rounded w-3/4" />
+                  <div className="h-4 bg-gray-200 rounded w-full" />
+                  <div className="h-4 bg-gray-200 rounded w-2/3" />
+                </div>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[1,2,3].map(i => (
+                <div key={i} className="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100">
+                  <div className="h-48 bg-gray-200" />
+                  <div className="p-6 space-y-3">
+                    <div className="h-3 bg-gray-200 rounded w-1/4" />
+                    <div className="h-5 bg-gray-200 rounded w-3/4" />
+                    <div className="h-3 bg-gray-200 rounded w-1/2" />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 

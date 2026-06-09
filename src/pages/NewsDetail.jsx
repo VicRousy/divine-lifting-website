@@ -76,9 +76,20 @@ export default function NewsDetail() {
         <div style={{ minHeight: '700px' }}>
 
         {loading && (
-          <div className="flex flex-col items-center justify-center py-20 text-gray-400">
-            <RefreshCw size={32} className="animate-spin mb-4" />
-            <p>Loading article...</p>
+          <div className="bg-gray-50 rounded-3xl overflow-hidden shadow-lg border border-gray-100 animate-pulse">
+            <div className="h-72 md:h-96 bg-gray-200" />
+            <div className="p-8 md:p-12 space-y-4">
+              <div className="flex gap-4">
+                <div className="h-3 bg-gray-200 rounded w-1/6" />
+                <div className="h-3 bg-gray-200 rounded w-1/6" />
+              </div>
+              <div className="h-7 bg-gray-200 rounded w-3/4" />
+              <div className="space-y-2">
+                <div className="h-4 bg-gray-200 rounded w-full" />
+                <div className="h-4 bg-gray-200 rounded w-full" />
+                <div className="h-4 bg-gray-200 rounded w-2/3" />
+              </div>
+            </div>
           </div>
         )}
 
