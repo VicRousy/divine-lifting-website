@@ -65,7 +65,7 @@ export default function NewsDetail() {
         </div>
       </section>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16" style={{ minHeight: '400px' }}>
         <Link
           to="/news"
           className="inline-flex items-center gap-2 text-primary font-bold mb-8 hover:text-secondary transition-colors"
@@ -107,10 +107,11 @@ export default function NewsDetail() {
             className="bg-gray-50 rounded-3xl overflow-hidden shadow-lg border border-gray-100"
           >
             {article.image_url ? (
-              <div className="h-72 md:h-96 overflow-hidden">
+              <div className="h-72 md:h-96 overflow-hidden" style={{ aspectRatio: '16/9' }}>
                 <img
                   src={article.image_url}
                   alt={article.title}
+                  width={800} height={450}
                   className="w-full h-full object-cover"
                 />
               </div>

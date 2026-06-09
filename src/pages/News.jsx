@@ -73,7 +73,7 @@ export default function News() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" style={{ minHeight: '400px' }}>
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map(cat => (
@@ -127,10 +127,11 @@ export default function News() {
                 >
                   <div className="grid md:grid-cols-2 gap-0">
                     {featured.image_url ? (
-                      <div className="h-64 md:h-full overflow-hidden">
+                      <div className="h-64 md:h-full overflow-hidden" style={{ aspectRatio: '16/9' }}>
                         <img
                           src={featured.image_url}
                           alt={featured.title}
+                          width={600} height={338}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       </div>
@@ -173,10 +174,11 @@ export default function News() {
                     className="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all group border border-gray-100"
                   >
                     {item.image_url ? (
-                      <div className="h-48 overflow-hidden">
+                      <div className="h-48 overflow-hidden" style={{ aspectRatio: '16/9' }}>
                         <img
                           src={item.image_url}
                           alt={item.title}
+                          width={400} height={225}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                       </div>

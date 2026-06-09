@@ -32,7 +32,7 @@ export default function NewsGrid() {
   }, [])
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white" style={{ minHeight: '400px' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-serif font-bold text-center text-primary mb-16">Latest News & Events</h2>
 
@@ -65,8 +65,8 @@ export default function NewsGrid() {
                 className="group bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all"
               >
                 {item.image_url ? (
-                  <div className="h-48 overflow-hidden">
-                    <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <div className="h-48 overflow-hidden" style={{ aspectRatio: '16/9' }}>
+                    <img src={item.image_url} alt={item.title} width={400} height={225} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                   </div>
                 ) : (
                   <div className="h-48 bg-gray-100 flex items-center justify-center text-gray-400">

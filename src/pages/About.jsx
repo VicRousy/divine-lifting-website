@@ -54,7 +54,7 @@ export default function About() {
       {/* Leadership */}
       <section className="py-20 bg-[#1f2937] text-white">
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
-          <img src={proprietressImg} alt="Mrs Stella A. Okoko" className="w-full md:w-1/3 rounded-2xl shadow-xl" />
+          <img src={proprietressImg} alt="Mrs Stella A. Okoko" width={400} height={500} className="w-full md:w-1/3 rounded-2xl shadow-xl" />
           <div className="md:w-2/3">
             <h2 className="text-3xl font-bold mb-6 text-white">Meet Our Proprietress</h2>
             <h3 className="text-xl font-bold text-[#fde047] mb-4">Mrs. Stella A. Okoko</h3>

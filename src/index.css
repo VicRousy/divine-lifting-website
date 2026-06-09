@@ -5,7 +5,7 @@
   --color-secondary: #f97316; /* Orange */
   --color-accent: #fde047; /* Lemon */
   --color-cream: #fafaf9; /* Cream Background */
-  
+
   --font-sans: 'Inter', sans-serif;
   --font-serif: 'Playfair Display', serif;
 }
@@ -23,6 +23,9 @@
   }
   img, video, canvas, svg {
     max-width: 100%;
+  }
+  img[loading] {
+    aspect-ratio: 16 / 9;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
