@@ -236,7 +236,7 @@ export default function Admissions() {
           </div>
         </section>
 
-        <section className="py-12 bg-[#34d399]">
+        <section className="py-12 bg-[#047857]">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
