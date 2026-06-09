@@ -1,14 +1,30 @@
 import nodemailer from 'nodemailer';
 
+const ALLOWED = [
+  'https://divine-lifting-website.vercel.app',
+  'https://divine-lifting-school.vercel.app',
+  'http://localhost:5173',
+  'http://localhost:3001',
+]
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  const origin = req.headers.origin || req.headers.referer || ''
+  if (origin && !ALLOWED.some(a => origin.startsWith(a))) {
+    return res.status(403).json({ error: 'Forbidden' })
   }
 
   const { name, email, phone, program, message } = req.body;
 
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  if (name.length > 100 || email.length > 200 || message.length > 5000 || (phone && phone.length > 30)) {
+    return res.status(400).json({ error: 'Field too long' })
   }
 
   try {
