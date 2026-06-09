@@ -15,12 +15,12 @@ export default function Home() {
         <meta name="description" content="Welcome to Divine Lifting International School — providing quality education with a focus on academic excellence, character development, and holistic growth in a God-centered environment." />
       </Helmet>
       <Hero />
-      <div className="content-section"><Stats /></div>
-      <div className="content-section"><WhyChooseUs /></div>
-      <div className="content-section"><Programs /></div>
-      <div className="content-section"><Testimonials /></div>
-      <div className="content-section"><NewsGrid /></div>
-      <div className="content-section"><FinalCTA /></div>
+      <Stats />
+      <WhyChooseUs />
+      <Programs />
+      <Testimonials />
+      <NewsGrid />
+      <FinalCTA />
     </div>
   )
 }

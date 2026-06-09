@@ -34,7 +34,7 @@ function App() {
           <Navbar />
           <main id="main-content" className="flex-grow">
             <ErrorBoundary>
-            <Suspense fallback={<div className="min-h-[50vh] pt-28 text-center text-primary font-semibold">Loading...</div>}>
+            <Suspense fallback={<div className="min-h-screen bg-[#0f172a] flex items-center justify-center"><div className="animate-pulse text-white/60 font-semibold">Loading...</div></div>}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />

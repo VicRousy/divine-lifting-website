@@ -28,9 +28,6 @@
   img[loading] {
     aspect-ratio: 16 / 9;
   }
-  .content-section {
-    contain: layout;
-  }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
     color: var(--color-primary);
