@@ -42,7 +42,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <div className="hidden lg:flex items-center gap-1 xl:gap-3 flex-shrink min-w-0 overflow-x-hidden flex-nowrap">
+          <div className="hidden lg:flex items-center gap-1 xl:gap-3">
             {navLinks.map((link) => (
               <NavLink
                 key={link.name}
@@ -55,14 +55,14 @@ export default function Navbar() {
             <div className="flex items-center gap-1.5 xl:gap-2 flex-shrink-0">
               <Link
                 to="/apply"
-                className="bg-secondary hover:bg-orange-600 text-white px-3 xl:px-5 py-1.5 xl:py-2 rounded-lg text-xs xl:text-sm font-medium transition-transform duration-300 hover:scale-105 shadow-lg whitespace-nowrap"
+                className="bg-secondary hover:bg-orange-600 text-white px-3 xl:px-5 py-1.5 xl:py-2 rounded-lg text-xs xl:text-sm font-medium shadow-lg whitespace-nowrap"
               >
                 Apply Now
               </Link>
               <a
                 href="https://divine-lifting-school.vercel.app"
                 rel="prefetch"
-                className="bg-green-600 hover:bg-green-700 text-white px-3 xl:px-5 py-1.5 xl:py-2 rounded-lg text-xs xl:text-sm font-medium transition-transform duration-300 hover:scale-105 shadow-lg whitespace-nowrap"
+                className="bg-green-600 hover:bg-green-700 text-white px-3 xl:px-5 py-1.5 xl:py-2 rounded-lg text-xs xl:text-sm font-medium shadow-lg whitespace-nowrap"
               >
                 Portal Login
               </a>
