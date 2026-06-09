@@ -72,7 +72,7 @@ export default function NewsGrid() {
               >
                 {item.image_url ? (
                   <div className="h-48 overflow-hidden" style={{ aspectRatio: '16/9' }}>
-                    <img src={item.image_url} alt={item.title} width={400} height={225} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                    <img src={item.image_url} alt={item.title} width={400} height={225} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                   </div>
                 ) : (
                   <div className="h-48 bg-gray-100 flex items-center justify-center text-gray-400">

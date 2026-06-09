@@ -58,7 +58,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
           <picture>
             <source srcSet={proprietressWebp} type="image/webp" />
-            <img src={proprietressImg} alt="Mrs Stella A. Okoko" width={400} height={500} className="w-full md:w-1/3 rounded-2xl shadow-xl" />
+            <img src={proprietressImg} alt="Mrs Stella A. Okoko" width={400} height={500} loading="lazy" decoding="async" className="w-full md:w-1/3 rounded-2xl shadow-xl" />
           </picture>
           <div className="md:w-2/3">
             <h2 className="text-3xl font-bold mb-6 text-white">Meet Our Proprietress</h2>

@@ -93,7 +93,7 @@ export default function Apply() {
 
       <section className="relative py-32 flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src={schoolImg} alt="School" className="w-full h-full object-cover" />
+          <img src={schoolImg} alt="School" fetchpriority="high" className="w-full h-full object-cover" srcSet="/images/admissions-hero-640.jpg 640w, /images/admissions-hero.jpg 768w" sizes="100vw" />
           <div className="absolute inset-0 bg-primary/80"></div>
         </div>
         <div className="relative z-10 px-4">
