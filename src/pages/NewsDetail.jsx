@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Calendar, ArrowLeft, Newspaper, RefreshCw } from 'lucide-react'
-import { supabase } from '../supabaseClient'
+import { getSupabase } from '../supabaseClient'
 import schoolImg from '../assets/school.jpg.jpeg'
 
 export default function NewsDetail() {
@@ -15,7 +15,7 @@ export default function NewsDetail() {
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const { data, error } = await supabase
+        const { data, error } = await getSupabase()
           .from('public_news')
           .select('*')
           .eq('id', id)

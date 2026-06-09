@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Calendar, ArrowRight, RefreshCw, Newspaper } from 'lucide-react'
-import { supabase } from '../supabaseClient'
+import { getSupabase } from '../supabaseClient'
 
 export default function NewsGrid() {
   const [news, setNews] = useState([])
@@ -12,7 +12,7 @@ export default function NewsGrid() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const { data, error } = await supabase
+        const { data, error } = await getSupabase()
           .from('public_news')
           .select('*')
           .order('published_date', { ascending: false })

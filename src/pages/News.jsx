@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Calendar, RefreshCw, Newspaper, ChevronRight } from 'lucide-react'
-import { supabase } from '../supabaseClient'
+import { getSupabase } from '../supabaseClient'
 import schoolImg from '../assets/school.jpg.jpeg'
 
 const categories = ['All', 'Academics', 'Events', 'Sports', 'Admissions', 'General']
@@ -17,7 +17,7 @@ export default function News() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const { data, error } = await supabase
+        const { data, error } = await getSupabase()
           .from('public_news')
           .select('*')
           .order('published_date', { ascending: false })
