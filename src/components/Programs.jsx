@@ -2,24 +2,30 @@ import Motion from './Motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import nurseryImg from '../assets/nursery and pre-school.jpg'
+import nurseryWebp from '../assets/nursery-preschool.webp'
 import primaryImg from '../assets/primary.jpg'
+import primaryWebp from '../assets/primary.webp'
 import secondaryImg from '../assets/secondary.jpg'
+import secondaryWebp from '../assets/secondary.webp'
 
 const programs = [
   {
     image: nurseryImg,
+    imageWebp: nurseryWebp,
     badge: 'Age 2-5',
     title: 'Nursery & Pre-Primary',
     description: 'A solid foundation built on curiosity, creativity, and fundamental literacy and numeracy skills in a nurturing environment.',
   },
   {
     image: primaryImg,
+    imageWebp: primaryWebp,
     badge: 'Age 6-11',
     title: 'Primary School',
     description: 'A balanced blend of British and Nigerian curricula, preparing students for secondary school with strong critical thinking skills.',
   },
   {
     image: secondaryImg,
+    imageWebp: secondaryWebp,
     badge: 'Age 12-17',
     title: 'Secondary School',
     description: 'Rigorous preparation for WAEC, NECO, and JAMB with focused Science, Commercial and Arts departments to ensure future success.',
@@ -46,7 +52,10 @@ export default function Programs() {
               className="group bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300"
             >
               <div className="relative h-64 overflow-hidden">
-                <img src={program.image} alt={program.title} width={400} height={256} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <picture>
+                  <source srcSet={program.imageWebp} type="image/webp" />
+                  <img src={program.image} alt={program.title} width={400} height={256} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                </picture>
                 <div className="absolute top-4 left-4 bg-secondary text-white px-3 py-1 rounded-full text-sm font-semibold">
                   {program.badge}
                 </div>

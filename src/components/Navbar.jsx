@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { schoolConfig } from '../data/config'
 import logoImg from '../assets/logo.jpg.png'
+import logoWebp from '../assets/logo.webp'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -33,7 +34,10 @@ export default function Navbar() {
           <div className="flex items-center flex-shrink-0">
             <Link to="/" className="flex items-center gap-3 min-w-0" onClick={() => setIsOpen(false)}>
               <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center p-1 shadow-lg flex-shrink-0">
-                <img src={logoImg} alt="Divine Lifting School" className="w-full h-full object-contain" />
+                <picture>
+                  <source srcSet={logoWebp} type="image/webp" />
+                  <img src={logoImg} alt="Divine Lifting School" className="w-full h-full object-contain" />
+                </picture>
               </div>
               <div className={`font-serif font-bold text-base xl:text-xl whitespace-nowrap ${scrolled ? 'text-primary' : 'text-white'}`}>
                 {schoolConfig.name}

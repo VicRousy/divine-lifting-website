@@ -20,7 +20,7 @@ export default function Academics() {
       {/* Hero */}
       <section className="relative py-32 flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src={schoolImg} alt="School Campus" className="w-full h-full object-cover" />
+          <img src={schoolImg} alt="School Campus" fetchpriority="high" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-primary/80"></div>
         </div>
         <div className="relative z-10 px-4">
@@ -48,7 +48,7 @@ export default function Academics() {
             {programs.map((p, i) => (
               <Motion key={p.title} whileHover={{ y: -5 }} className="p-8 bg-white rounded-2xl border border-gray-200 shadow-sm">
                 <h3 className="text-2xl font-bold text-primary mb-2">{p.title}</h3>
-                <p className="text-secondary font-semibold mb-4">{p.age}</p>
+                <p className="text-gray-600 font-semibold mb-4">{p.age}</p>
                 <p className="text-gray-600">{p.desc}</p>
               </Motion>
             ))}
@@ -69,7 +69,7 @@ export default function Academics() {
         <div className="bg-secondary p-10 rounded-2xl shadow-lg text-white">
           <h2 className="text-2xl font-bold mb-6 text-white">Our Success</h2>
           <div className="text-5xl font-bold mb-2">90%+</div>
-          <p className="text-lg text-orange-100">WAEC & NECO Pass Rate</p>
+          <p className="text-lg text-white">WAEC & NECO Pass Rate</p>
           <p className="mt-4">Our students consistently secure admission into top universities across Nigeria and beyond.</p>
         </div>
       </section>
