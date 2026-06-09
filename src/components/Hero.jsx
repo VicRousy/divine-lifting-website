@@ -4,7 +4,7 @@ import { ArrowRight, PlayCircle } from 'lucide-react'
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[620px] h-[100svh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[620px] h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div 
         className="absolute inset-0 z-0"
