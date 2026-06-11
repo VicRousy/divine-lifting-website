@@ -76,7 +76,7 @@ export default function Gallery() {
               </div>
               <div className="p-4">
                 <h3 className="font-bold text-primary">{item.title}</h3>
-                <p className="text-gray-400 text-xs mt-1">Click to view full image</p>
+                <p className="text-gray-400 text-xs mt-1">Photos coming soon</p>
               </div>
             </div>
           ))}

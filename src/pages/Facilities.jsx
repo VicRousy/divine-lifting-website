@@ -1,5 +1,4 @@
 import { Helmet } from "react-helmet-async";
-import Facilities from "../components/Facilities";
 const schoolImg = "/images/default-hero.jpg";
 
 export default function FacilitiesPage() {
@@ -143,12 +142,11 @@ export default function FacilitiesPage() {
             Take a 360° virtual tour of our facilities from the comfort of your
             home
           </p>
-          <a
-            href="#"
-            className="inline-block bg-[#fde047] hover:bg-[#fcd34d] text-[#1e3a8a] px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:-translate-y-0.5 shadow-xl"
+          <span
+            className="inline-block bg-[#fde047] text-[#1e3a8a] px-8 py-4 rounded-lg font-bold text-lg opacity-70 cursor-not-allowed"
           >
-            Start Virtual Tour
-          </a>
+            Virtual Tour (Coming Soon)
+          </span>
         </div>
       </section>
     </div>

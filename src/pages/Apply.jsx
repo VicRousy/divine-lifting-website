@@ -48,7 +48,8 @@ export default function Apply() {
     setError('')
 
     try {
-      const { data: seqData, error: seqError } = (await getSupabase()).rpc('next_application_number')
+      const supabase = await getSupabase()
+      const { data: seqData, error: seqError } = await supabase.rpc('next_application_number')
       let application_number
       if (seqError || !seqData) {
         const year = new Date().getFullYear()
@@ -73,7 +74,6 @@ export default function Apply() {
       setAppNumber(application_number)
       setSubmitted(true)
     } catch (err) {
-      console.error('Error submitting application:', err)
       setError('Failed to submit application. Please try again or contact us directly.')
     } finally {
       setSubmitting(false)

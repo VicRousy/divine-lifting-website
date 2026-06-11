@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Calendar, RefreshCw, Newspaper, ChevronRight } from 'lucide-react'
+import { Calendar, Newspaper, ChevronRight } from 'lucide-react'
 import { getSupabase } from '../supabaseClient'
 const schoolImg = "/images/default-hero.jpg"
 

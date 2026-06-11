@@ -36,7 +36,7 @@ export default function About() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-20 bg-cream-50">
+      <section className="py-20 bg-cream">
         <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
           <div className="bg-[#fde047] p-10 rounded-2xl shadow-lg">
             <h2 className="text-2xl font-bold mb-6 text-primary">Mission Statement</h2>
@@ -109,7 +109,7 @@ export default function About() {
       </section>
 
       {/* Core Values */}
-      <section className="py-20 bg-cream-50">
+      <section className="py-20 bg-cream">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-16 text-primary">Our Core Values</h2>
           <div className="grid md:grid-cols-3 gap-8">

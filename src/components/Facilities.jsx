@@ -117,12 +117,11 @@ export default function Facilities() {
 
         {/* Virtual Tour CTA */}
         <div className="text-center mt-16">
-          <a
-            href="/facilities"
-            className="inline-block bg-[#f97316] hover:bg-[#ea580c] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg"
+          <span
+            className="inline-block bg-[#f97316] text-white px-8 py-4 rounded-lg font-bold text-lg opacity-70 cursor-not-allowed"
           >
-            Take Virtual Tour
-          </a>
+            Virtual Tour (Coming Soon)
+          </span>
         </div>
       </div>
     </section>

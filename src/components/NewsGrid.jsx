@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Calendar, ArrowRight, RefreshCw, Newspaper } from 'lucide-react'
+import { Calendar, ArrowRight, Newspaper } from 'lucide-react'
 import { getSupabase } from '../supabaseClient'
 
 export default function NewsGrid() {

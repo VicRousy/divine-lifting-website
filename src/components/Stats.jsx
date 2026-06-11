@@ -15,7 +15,7 @@ export default function Stats() {
           {stats.map((stat, index) => (
             <div
               key={stat.label}
-              className="text-center group cursor-pointer bg-secondary rounded-xl p-6 shadow-md hover:bg-orange-600 transition-all duration-300"
+              className="text-center group bg-secondary rounded-xl p-6 shadow-md hover:bg-orange-600 transition-all duration-300"
             >
               <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
                 <stat.icon size={32} className="text-white" />

@@ -129,7 +129,7 @@ export default function Admissions() {
               {requirementsData.map((req, idx) => (
                   <div
                     key={idx}
-                    className="bg-[#374155] rounded-lg shadow-lg hover:shadow-xl transition-shadow p-8 hover:-translate-y-1 transition-transform duration-300"
+                    className="bg-[#374155] rounded-lg shadow-lg hover:shadow-xl p-8 hover:-translate-y-1 transition-all duration-300"
                   >
                     <div className="mb-6">
                       <h3 className="text-2xl font-serif font-bold text-white mb-1">
@@ -193,7 +193,7 @@ export default function Admissions() {
                     <div className="hidden lg:block absolute top-16 left-[60%] w-[90%] h-1 bg-gradient-to-r from-[#f97316] to-transparent"></div>
                   )}
 
-                  <div className="bg-[#374155] rounded-lg shadow-md hover:shadow-lg transition-shadow p-8 text-center h-full">
+                  <div className="bg-[#374155] rounded-lg shadow-md hover:shadow-lg p-8 text-center h-full transition-all duration-300">
                     <div className="w-14 h-14 rounded-full bg-[#c2410c] text-white flex items-center justify-center font-bold text-xl mx-auto mb-4">
                       {item.step}
                     </div>

@@ -98,7 +98,7 @@ export default function Navbar() {
               </Link>
               <a
                 href="https://divine-lifting-school.vercel.app"
-                rel="prefetch"
+                rel="noopener noreferrer"
                 className="bg-green-600 hover:bg-green-700 text-white px-3 xl:px-5 py-1.5 xl:py-2 rounded-lg text-xs xl:text-sm font-medium shadow-lg whitespace-nowrap"
               >
                 Portal Login
