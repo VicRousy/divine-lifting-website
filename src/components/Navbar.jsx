@@ -117,6 +117,23 @@ export default function Navbar() {
       <div id="mobile-menu" ref={menuRef} role="navigation" aria-label="Mobile navigation" className={`lg:hidden transition-all duration-300 ease-out overflow-hidden ${isOpen ? 'max-h-[calc(100vh-76px)] opacity-100' : 'max-h-0 opacity-0 invisible'}`}>
         <div className="absolute top-full left-0 right-0 bg-white shadow-xl border-t border-gray-100 overflow-y-auto">
           <div className="px-4 py-6 space-y-4">
+            <div className="grid grid-cols-2 gap-3">
+              <Link
+                to="/apply"
+                onClick={() => setIsOpen(false)}
+                className="block text-center bg-secondary text-white py-3 rounded-lg font-bold"
+              >
+                Apply Now
+              </Link>
+              <a
+                href="https://divine-lifting-school.vercel.app?force_login=true"
+                onClick={() => setIsOpen(false)}
+                className="block text-center bg-green-600 text-white py-3 rounded-lg font-bold"
+              >
+                Portal Login
+              </a>
+            </div>
+            <hr className="border-gray-200" />
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -127,20 +144,6 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
-            <Link
-              to="/apply"
-              onClick={() => setIsOpen(false)}
-              className="block w-full text-center bg-secondary text-white py-3 rounded-lg font-bold"
-            >
-              Apply Now
-            </Link>
-            <a
-              href="https://divine-lifting-school.vercel.app?force_login=true"
-              onClick={() => setIsOpen(false)}
-              className="block w-full text-center bg-green-600 text-white py-3 rounded-lg font-bold"
-            >
-              Portal Login
-            </a>
           </div>
         </div>
       </div>
