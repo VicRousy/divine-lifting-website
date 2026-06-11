@@ -59,9 +59,10 @@ export default function Apply() {
         application_number = `APP-${new Date().getFullYear()}-${String(seqData).padStart(4, '0')}`
       }
 
+      const { _honeypot, _t, ...cleanData } = formData
       const { error: insertError } = await supabase
         .from('applications')
-        .insert([{ ...formData, application_number }])
+        .insert([{ ...cleanData, application_number }])
 
       if (insertError) throw insertError
 
