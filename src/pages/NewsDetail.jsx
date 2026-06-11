@@ -14,7 +14,8 @@ export default function NewsDetail() {
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const { data, error } = await getSupabase()
+        const supabase = await getSupabase()
+        const { data, error } = await supabase
           .from('public_news')
           .select('*')
           .eq('id', id)

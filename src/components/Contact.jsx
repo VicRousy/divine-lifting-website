@@ -38,7 +38,8 @@ export default function Contact() {
     setError('')
 
     try {
-      const { error: insertError } = await getSupabase()
+      const supabase = await getSupabase()
+      const { error: insertError } = await supabase
         .from('contact_messages')
         .insert([{
           name: formData.name,

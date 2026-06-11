@@ -11,7 +11,8 @@ export default function NewsGrid() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const { data, error } = await getSupabase()
+        const supabase = await getSupabase()
+        const { data, error } = await supabase
           .from('public_news')
           .select('*')
           .order('published_date', { ascending: false })

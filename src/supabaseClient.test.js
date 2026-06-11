@@ -7,15 +7,15 @@ vi.mock('@supabase/supabase-js', () => ({
 describe('getSupabase', () => {
   it('returns a supabase client', async () => {
     const { getSupabase } = await import('./supabaseClient')
-    const client = getSupabase()
+    const client = await getSupabase()
     expect(client).toBeTruthy()
     expect(typeof client.from).toBe('function')
   })
 
   it('returns the same cached instance on repeated calls', async () => {
     const { getSupabase } = await import('./supabaseClient')
-    const a = getSupabase()
-    const b = getSupabase()
+    const a = await getSupabase()
+    const b = await getSupabase()
     expect(a).toBe(b)
   })
 })

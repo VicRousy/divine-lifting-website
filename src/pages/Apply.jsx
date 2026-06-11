@@ -48,7 +48,7 @@ export default function Apply() {
     setError('')
 
     try {
-      const { data: seqData, error: seqError } = await getSupabase().rpc('next_application_number')
+      const { data: seqData, error: seqError } = (await getSupabase()).rpc('next_application_number')
       let application_number
       if (seqError || !seqData) {
         const year = new Date().getFullYear()

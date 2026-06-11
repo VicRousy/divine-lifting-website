@@ -1,9 +1,8 @@
-import { createClient } from '@supabase/supabase-js'
-
 let _client = null
 
-export function getSupabase() {
+export async function getSupabase() {
   if (!_client) {
+    const { createClient } = await import('@supabase/supabase-js')
     _client = createClient(
       import.meta.env.VITE_SUPABASE_URL,
       import.meta.env.VITE_SUPABASE_ANON_KEY
