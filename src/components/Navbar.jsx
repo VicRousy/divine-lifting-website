@@ -116,34 +116,35 @@ export default function Navbar() {
 
       <div id="mobile-menu" ref={menuRef} role="navigation" aria-label="Mobile navigation" className={`lg:hidden transition-all duration-300 ease-out overflow-hidden ${isOpen ? 'max-h-[calc(100vh-76px)] opacity-100' : 'max-h-0 opacity-0 invisible'}`}>
         <div className="absolute top-full left-0 right-0 bg-white shadow-xl border-t border-gray-100 overflow-y-auto">
-          <div className="px-4 py-6 space-y-4">
-            <div className="grid grid-cols-2 gap-3">
+          <div className="flex flex-col" style={{ maxHeight: 'calc(100vh - 76px)' }}>
+            <div className="flex-1 overflow-y-auto px-4 py-6 space-y-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="block text-lg font-medium text-primary hover:text-secondary"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+            <div className="flex-shrink-0 px-4 pb-6 pt-2 border-t border-gray-200 flex gap-3">
               <Link
                 to="/apply"
                 onClick={() => setIsOpen(false)}
-                className="block text-center bg-secondary text-white py-3 rounded-lg font-bold"
+                className="flex-1 text-center bg-secondary text-white py-3 rounded-lg font-bold"
               >
                 Apply Now
               </Link>
               <a
                 href="https://divine-lifting-school.vercel.app?force_login=true"
                 onClick={() => setIsOpen(false)}
-                className="block text-center bg-green-600 text-white py-3 rounded-lg font-bold"
+                className="flex-1 text-center bg-green-600 text-white py-3 rounded-lg font-bold"
               >
                 Portal Login
               </a>
             </div>
-            <hr className="border-gray-200" />
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.href}
-                onClick={() => setIsOpen(false)}
-                className="block text-lg font-medium text-primary hover:text-secondary"
-              >
-                {link.name}
-              </Link>
-            ))}
           </div>
         </div>
       </div>
