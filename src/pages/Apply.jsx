@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 import { CheckCircle, Send, ArrowLeft } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { getSupabase } from '../supabaseClient'
 const schoolImg = "/images/admissions-hero.jpg"
 
 const PAGE_LOAD = Date.now()
@@ -48,31 +47,15 @@ export default function Apply() {
     setError('')
 
     try {
-      const supabase = await getSupabase()
-      const { data: seqData, error: seqError } = await supabase.rpc('next_application_number')
-      let application_number
-      if (seqError || !seqData) {
-        const year = new Date().getFullYear()
-        const random = Math.floor(1000 + Math.random() * 9000)
-        application_number = `APP-${year}-${random}`
-      } else {
-        application_number = `APP-${new Date().getFullYear()}-${String(seqData).padStart(4, '0')}`
-      }
-
-      const { _honeypot, _t, ...cleanData } = formData
-      const { error: insertError } = await supabase
-        .from('applications')
-        .insert([{ ...cleanData, application_number }])
-
-      if (insertError) throw insertError
-
-      fetch('/api/application-notify', {
+      const response = await fetch('/api/application-notify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, application_number }),
-      }).catch(() => {})
+        body: JSON.stringify(formData),
+      })
+      const result = await response.json()
+      if (!response.ok || !result.application_number) throw new Error('Submission failed')
 
-      setAppNumber(application_number)
+      setAppNumber(result.application_number)
       setSubmitted(true)
     } catch (err) {
       setError('Failed to submit application. Please try again or contact us directly.')

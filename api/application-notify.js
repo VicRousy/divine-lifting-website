@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import { createClient } from '@supabase/supabase-js'
 
 const ALLOWED = [
   'https://divine-lifting-website.vercel.app',
@@ -34,9 +35,9 @@ export default async function handler(req, res) {
   RATE_LIMIT[ip].push(now)
   RATE_LIMIT[ip] = RATE_LIMIT[ip].filter(t => t > now - RATE_WINDOW)
 
-  const { student_first_name, student_last_name, class_applying_for, application_number, father_name, mother_name, father_email, mother_email, _honeypot, _t } = req.body;
+  const { student_first_name, student_last_name, student_dob, student_gender, class_applying_for, previous_school, father_name, father_phone, father_email, mother_name, mother_phone, mother_email, address, emergency_contact_name, emergency_contact_phone, medical_notes, how_heard, siblings_enrolled, _honeypot, _t } = req.body;
 
-  if (!student_first_name || !student_last_name || !application_number) {
+  if (!student_first_name || !student_last_name || !student_dob || !student_gender || !class_applying_for || !address || !emergency_contact_name || !emergency_contact_phone) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
@@ -48,11 +49,47 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid request' })
   }
 
-  if (student_first_name.length > 50 || student_last_name.length > 50 || application_number.length > 30) {
+  if (student_first_name.length > 50 || student_last_name.length > 50 || address.length > 500 || emergency_contact_name.length > 100 || emergency_contact_phone.length > 30) {
     return res.status(400).json({ error: 'Field too long' })
   }
 
+  const supabaseUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL
+  if (!supabaseUrl || !process.env.SUPABASE_SERVICE_KEY) {
+    return res.status(500).json({ error: 'Submission service is not configured' })
+  }
+
   try {
+    const supabase = createClient(supabaseUrl, process.env.SUPABASE_SERVICE_KEY)
+    const { data: sequence, error: sequenceError } = await supabase.rpc('next_application_number')
+    const application_number = sequenceError || !sequence
+      ? `APP-${new Date().getFullYear()}-${crypto.randomUUID().slice(0, 8).toUpperCase()}`
+      : `APP-${new Date().getFullYear()}-${String(sequence).padStart(4, '0')}`
+
+    const { error: insertError } = await supabase
+      .from('applications')
+      .insert({
+        application_number,
+        student_first_name: student_first_name.trim(),
+        student_last_name: student_last_name.trim(),
+        student_dob,
+        student_gender,
+        class_applying_for,
+        previous_school: previous_school?.trim() || null,
+        father_name: father_name?.trim() || null,
+        father_phone: father_phone?.trim() || null,
+        father_email: father_email?.trim().toLowerCase() || null,
+        mother_name: mother_name?.trim() || null,
+        mother_phone: mother_phone?.trim() || null,
+        mother_email: mother_email?.trim().toLowerCase() || null,
+        address: address.trim(),
+        emergency_contact_name: emergency_contact_name.trim(),
+        emergency_contact_phone: emergency_contact_phone.trim(),
+        medical_notes: medical_notes?.trim() || null,
+        how_heard: how_heard || null,
+        siblings_enrolled: Boolean(siblings_enrolled),
+      })
+    if (insertError) throw insertError
+
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -89,7 +126,7 @@ export default async function handler(req, res) {
       `,
     });
 
-    res.json({ success: true });
+    res.json({ success: true, application_number });
   } catch (error) {
     console.error('Email send error:', error);
     res.status(500).json({ error: 'Failed to send notification' });

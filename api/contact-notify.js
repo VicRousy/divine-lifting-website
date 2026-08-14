@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import { createClient } from '@supabase/supabase-js'
 
 const ALLOWED = [
   'https://divine-lifting-website.vercel.app',
@@ -52,7 +53,24 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Field too long' })
   }
 
+  const supabaseUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL
+  if (!supabaseUrl || !process.env.SUPABASE_SERVICE_KEY) {
+    return res.status(500).json({ error: 'Submission service is not configured' })
+  }
+
   try {
+    const supabase = createClient(supabaseUrl, process.env.SUPABASE_SERVICE_KEY)
+    const { error: insertError } = await supabase
+      .from('contact_messages')
+      .insert({
+        name: name.trim(),
+        email: email.trim().toLowerCase(),
+        phone: phone?.trim() || null,
+        program: program?.trim() || null,
+        message: message.trim(),
+      })
+    if (insertError) throw insertError
+
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {

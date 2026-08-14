@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, MessageCircle, CheckCircle } from "lucide-react";
-import { getSupabase } from "../supabaseClient";
 const schoolImg = "/images/default-hero.jpg";
 
 const PAGE_LOAD = Date.now()
@@ -38,27 +37,15 @@ export default function Contact() {
     setError('')
 
     try {
-      const supabase = await getSupabase()
-      const { error: insertError } = await supabase
-        .from('contact_messages')
-        .insert([{
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone || null,
-          program: formData.program || null,
-          message: formData.message
-        }])
-
-      if (insertError) throw insertError
-
-      fetch('/api/contact-notify', {
+      const response = await fetch('/api/contact-notify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
-      }).catch(() => {})
+      })
+      if (!response.ok) throw new Error('Submission failed')
 
       setSubmitted(true)
-      setFormData({ name: '', email: '', phone: '', program: '', message: '' })
+      setFormData({ name: '', email: '', phone: '', program: '', message: '', _honeypot: '', _t: Date.now() })
     } catch (err) {
       console.error('Error submitting contact form:', err)
       setError('Failed to send message. Please try again or contact us directly.')
