@@ -2,18 +2,17 @@ import { useState } from "react";
 import { Mail, Phone, MapPin, Send, MessageCircle, CheckCircle } from "lucide-react";
 const schoolImg = "/images/default-hero.jpg";
 
-const PAGE_LOAD = Date.now()
-
 export default function Contact() {
-  const [formData, setFormData] = useState({
+  const createInitialFormData = () => ({
     name: '',
     email: '',
     phone: '',
     program: '',
     message: '',
     _honeypot: '',
-    _t: PAGE_LOAD,
+    _t: Date.now(),
   })
+  const [formData, setFormData] = useState(createInitialFormData)
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
@@ -42,13 +41,14 @@ export default function Contact() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       })
-      if (!response.ok) throw new Error('Submission failed')
+      const result = await response.json().catch(() => ({}))
+      if (!response.ok) throw new Error(result.error || 'Submission failed')
 
       setSubmitted(true)
-      setFormData({ name: '', email: '', phone: '', program: '', message: '', _honeypot: '', _t: Date.now() })
+      setFormData(createInitialFormData())
     } catch (err) {
       console.error('Error submitting contact form:', err)
-      setError('Failed to send message. Please try again or contact us directly.')
+      setError(err instanceof Error ? err.message : 'Failed to send message. Please try again or contact us directly.')
     } finally {
       setSubmitting(false)
     }

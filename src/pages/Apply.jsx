@@ -4,10 +4,8 @@ import { CheckCircle, Send, ArrowLeft } from 'lucide-react'
 import { Link } from 'react-router-dom'
 const schoolImg = "/images/admissions-hero.jpg"
 
-const PAGE_LOAD = Date.now()
-
 export default function Apply() {
-  const [formData, setFormData] = useState({
+  const createInitialFormData = () => ({
     student_first_name: '',
     student_last_name: '',
     student_dob: '',
@@ -27,8 +25,9 @@ export default function Apply() {
     how_heard: '',
     siblings_enrolled: false,
     _honeypot: '',
-    _t: PAGE_LOAD,
+    _t: Date.now(),
   })
+  const [formData, setFormData] = useState(createInitialFormData)
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [appNumber, setAppNumber] = useState('')
@@ -53,12 +52,12 @@ export default function Apply() {
         body: JSON.stringify(formData),
       })
       const result = await response.json()
-      if (!response.ok || !result.application_number) throw new Error('Submission failed')
+      if (!response.ok || !result.application_number) throw new Error(result.error || 'Submission failed')
 
       setAppNumber(result.application_number)
       setSubmitted(true)
     } catch (err) {
-      setError('Failed to submit application. Please try again or contact us directly.')
+      setError(err instanceof Error ? err.message : 'Failed to submit application. Please try again or contact us directly.')
     } finally {
       setSubmitting(false)
     }

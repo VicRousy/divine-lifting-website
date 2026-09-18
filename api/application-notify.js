@@ -90,21 +90,22 @@ export default async function handler(req, res) {
       })
     if (insertError) throw insertError
 
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
-      },
-    });
+    try {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.GMAIL_USER,
+          pass: process.env.GMAIL_APP_PASSWORD,
+        },
+      });
 
-    const parentInfo = [father_name, mother_name].filter(Boolean).join(' & ') || 'Not provided';
+      const parentInfo = [father_name, mother_name].filter(Boolean).join(' & ') || 'Not provided';
 
-    await transporter.sendMail({
-      from: `"Divine Lifting Website" <${process.env.GMAIL_USER}>`,
-      to: process.env.NOTIFY_EMAIL || process.env.GMAIL_USER,
-      subject: `New Admission Application: ${student_first_name} ${student_last_name} - ${application_number}`,
-      html: `
+      await transporter.sendMail({
+        from: `"Divine Lifting Website" <${process.env.GMAIL_USER}>`,
+        to: process.env.NOTIFY_EMAIL || process.env.GMAIL_USER,
+        subject: `New Admission Application: ${student_first_name} ${student_last_name} - ${application_number}`,
+        html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="background: #1f2937; padding: 24px; text-align: center; border-radius: 12px 12px 0 0;">
             <h1 style="color: #f97316; margin: 0; font-size: 20px;">Divine Lifting International School</h1>
@@ -123,12 +124,15 @@ export default async function handler(req, res) {
           </div>
           <p style="text-align: center; color: #9ca3af; font-size: 12px; margin-top: 16px;">Sent from divine-lifting-website.vercel.app</p>
         </div>
-      `,
-    });
+        `,
+      });
+    } catch (emailError) {
+      console.error('Application saved but email notification failed:', emailError);
+    }
 
     res.json({ success: true, application_number });
   } catch (error) {
-    console.error('Email send error:', error);
+    console.error('Application submission failed:', error);
     res.status(500).json({ error: 'Failed to send notification' });
   }
 }
